@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="">
+      <h1><input type="text" [(ngModel)]="article.title" /> </h1>
+      <input type="text" [(ngModel)]="article.picture" />
+      <article>
+        <textarea [(ngModel)]="article.body"> </textarea>
+      </article>
+    </div>
+  </div>
+  {{article.creationDate}}
+  {{article.lastModification}}
+  <div class="row">
+    <button type="button">Sauvegarder</button>
+  </div>
+</div>
+

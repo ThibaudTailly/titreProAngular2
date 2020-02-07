@@ -1,0 +1,16 @@
+.btn.btn-default {
+  background-color: white;
+  border: 1px solid green;
+}
+.btn {
+  font-weight: 500;
+  font-size: 16px;
+  border-radius: 0;
+  color: #1e217f;
+  display:inline-block;
+
+}
+.divButton {
+  margin-bottom: 5px;
+  margin-top: auto;
+}
