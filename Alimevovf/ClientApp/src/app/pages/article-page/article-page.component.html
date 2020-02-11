@@ -1,9 +1,9 @@
 <div *ngIf='article' class="container">
-  <h4>{{article.title}}</h4>
+  <h4>{{article.title}}&nbsp;<strong>{{article.id}}</strong></h4>
   <div [innerHTML]="article.body">
 
   </div>
 </div>
 <div *ngIf='!article' class="container">
-  <p>login</p>
+  <p>Loading</p>
 </div>

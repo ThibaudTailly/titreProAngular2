@@ -1,27 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import {  ActivatedRoute } from '@angular/router';
-import { ArticleService } from '../../services/article.service';
+import { Component,Input, OnInit } from '@angular/core';
 import { Article } from '../../models/article';
+import { ArticleService } from '../../services/article.service';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
-  selector: 'ck-article-page',
-  templateUrl: './article-page.component.html',
-  styleUrls: ['./article-page.component.css']
+  selector: 'app-cards',
+  templateUrl: './cards.component.html',
+  styleUrls: ['./cards.component.css']
 })
-export class ArticlePageComponent implements OnInit {
 
+export class CardsComponent implements OnInit{
+  @Input() blogs: any[]
   article: Article = null
 
   constructor(
     //service qui va gerer les informations de l'url 
     private actRoute: ActivatedRoute,
-    private articleSrv : ArticleService
-    ) {
-   
-  }
+    private articleSrv: ArticleService
+  ) {
 
-  ngOnInit()
-  {
+  } ngOnInit() {
     // snapshot : etat a l'instant t, paramMap list des parametres données ds l'url
     let id = this.actRoute.snapshot.paramMap.get('id');
     //subscribe: 
@@ -34,14 +33,14 @@ export class ArticlePageComponent implements OnInit {
         article.body = data["body"];
         article.picture = data["picture"];
         article.creationDate = new Date(data["creationDate"]);
-        article.lastModification = new Date(data["lastModification"]); 
+        article.lastModification = new Date(data["lastModification"]);
 
-        this.article = article; 
+        this.article = article;
       },
       (error: any) => { console.error(error) }
     );
 
 
   }
-
 }
+

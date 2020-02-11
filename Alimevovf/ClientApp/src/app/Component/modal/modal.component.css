@@ -1,0 +1,9 @@
+.but1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.text-co{
+  color:white;
+  font-size:24px;
+}

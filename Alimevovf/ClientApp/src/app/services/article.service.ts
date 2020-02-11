@@ -12,11 +12,7 @@ export class ArticleService {
   constructor(private http:HttpClient) { }
 
   getById(id: string) {
-    this.http.get("localhost:44358/api/article").subscribe(
-      (data: any) => { console.log(data) },
-      (error: any) => { console.error(error) }
-      )
-    return new Article();
+    return this.http.get("/api/article/" + id)
   }
 }
 

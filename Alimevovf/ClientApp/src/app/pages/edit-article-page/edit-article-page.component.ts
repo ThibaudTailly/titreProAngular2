@@ -16,14 +16,14 @@ export class EditArticlePageComponent implements OnInit {
   }
 
   ngOnInit() {
-    let article = this.articleSrv.getById("1");
+    /*let article = this.articleSrv.getById("1");
     if (article) {
       this.article = article;
     }
     else
     {
       this.article = new Article();
-    }
+    }*/
   }
 
 }

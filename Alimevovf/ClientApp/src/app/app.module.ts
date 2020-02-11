@@ -4,20 +4,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { CardsComponent } from './cards/cards.component';
-import { modalTestComponent } from './modalTest/modalTest.component';
-import { footerComponent } from './footer/footer.component';
-import { mentionlegalesComponent } from './mentionlegales/mentionslegales.component';
-import { HeaderComponent } from './header/header.component';
-import { buttonAccesComponent } from './buttonAcces/buttonAcces.component';
+import { CardsComponent } from '../app/Component/cards/cards.component';
+import { footerComponent } from '../app/Component/footer/footer.component';
+import { mentionlegalesComponent } from '../app/Component/mentionlegales/mentionslegales.component';
+import { HeaderComponent } from '../app/Component/header/header.component';
+import { buttonAccesComponent } from '../app/Component/buttonAcces/buttonAcces.component';
 
-import { partenaireComponent } from './partenaire/partenaire.component';
-import { HeaderPresentationComponent } from './headerPresentation/headerPresentation.component';
-import { PresentationArticleComponent } from './PresentationArticle/PresentationArticle.component';
-import { ModalComponent } from './modal/modal.component';
-import { ModalConnexionComponent } from './modalConnexion/modalConnexion.component';
+import { partenaireComponent } from '../app/Component/partenaire/partenaire.component';
+import { HeaderPresentationComponent } from '../app/Component/headerPresentation/headerPresentation.component';
+import { PresentationArticleComponent } from '../app/Component/PresentationArticle/PresentationArticle.component';
+import { ModalComponent } from '../app/Component/modal/modal.component';
+import { ModalConnexionComponent } from '../app/Component/modalConnexion/modalConnexion.component';
 import { ServerComponent } from './server/server.component';
-import { CategorieComponent } from './categorie/categorie.component';
+import { CategorieComponent } from '../app/Component/categorie/categorie.component';
 import { BlogService } from './services/blog.service';
 import { ArticleService } from './services/article.service';
 
@@ -28,7 +27,7 @@ import { BlogPageComponent } from './pages/blog-page/blog-page.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { ArticlePageComponent } from './pages/article-page/article-page.component';
 import { EditArticlePageComponent } from './pages/edit-article-page/edit-article-page.component';
-import { IsAdminGuard } from './guards/is-admin.guard';
+import { IsAdminGuard } from '../app/Component/guards/is-admin.guard';
 
 const routes: Routes = [
   
@@ -47,7 +46,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    modalTestComponent,
     partenaireComponent,
     footerComponent,
     CategorieComponent,

@@ -1,0 +1,47 @@
+ <nav class="navbar navbar-expand-lg navbar-dark test sticky-top">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">Logo</a>
+
+  <!-- Links -->
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Formation</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="blog">tous les articles</a>
+      </li>
+
+      <!-- Dropdown -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+          Formules
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" routerLink="/">Bases de l'alimentation</a>
+          <a class="dropdown-item" routerLink="blog">Allergies et intolérances</a>
+          <a class="dropdown-item" href="#">Styles de vie</a>
+          <a class="dropdown-item" routerLink="/">Maladies nutritionnelles</a>
+          <a class="dropdown-item" routerLink="blog">Additifs</a>
+          <a class="dropdown-item" href="#">Adaptation</a>
+        </div>
+      </li>
+    </ul>
+    <ul class="navbar-nav text-center ml-auto rounded">
+      <li class="nav-item  ">
+        <app-modal></app-modal>
+      </li>
+    </ul>
+    <ul *ngIf="!auth.isLogged()" class="navbar-nav text-center p-2">
+      <li class="nav-item ">
+        <app-modalConnexion></app-modalConnexion>
+      </li>
+    </ul>
+    <ul *ngIf="auth.isLogged()">
+      <li>
+        <button (click)="auth.logOut()">Deconnexion</button>
+      </li>
+    </ul>
+
+  </div>
+</nav> 

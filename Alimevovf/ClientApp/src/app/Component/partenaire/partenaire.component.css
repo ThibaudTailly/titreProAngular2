@@ -1,0 +1,30 @@
+.container {
+  margin-left: 0;
+  display: inline-block;
+}
+.img-responsive{
+display: block;
+max-width: 100%;
+height: auto;
+}
+.ul.PartenaireLogo {
+  List-style-type: none;
+  display:inline-block;
+  margin-right:auto;
+}
+.list-group-horizontal .list-group-item:last-child {
+  margin-right: 5px;
+  list-style-type: none;
+}
+.PartenaireLogo {
+  margin: auto;
+  list-style-type: none;
+}
+.test{
+    list-style-type: none;
+    text-align:center;
+}
+.test2{
+    text-align:center;
+}
+
