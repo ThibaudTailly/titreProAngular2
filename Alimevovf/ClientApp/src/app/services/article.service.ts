@@ -14,5 +14,15 @@ export class ArticleService {
   getById(id: string) {
     return this.http.get("/api/article/" + id)
   }
+  create(article: Article) {
+    let params: any = {}
+    params.title = article.title;
+    params.picture = article.picture;
+    params.Body = article.body;
+    /*params.dateOfCreation = article.creationDate;
+    params.dateOfModification = article.lastModification;*/
+    params.fk_cook_user = article.fkCookUser;
+    return this.http.post("/api/article/create", params);
+  }
 }
 

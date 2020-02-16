@@ -33,13 +33,19 @@ const routes: Routes = [
   
   { path: '', component: MainPageComponent },
   { path: 'blog', component: BlogPageComponent },
-  { path: 'article/:id', component: ArticlePageComponent },
+ 
   { path: 'mentionslegales', component: mentionlegalesComponent },
   {
-    path:'article/edit/:id',
+    path:'article/edit',
     component: EditArticlePageComponent,
     canActivate: [IsAdminGuard],
   },
+  {
+    path: 'article/edit/:id',
+    component: EditArticlePageComponent,
+    canActivate: [IsAdminGuard],
+  },
+  { path: 'article/:id', component: ArticlePageComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 

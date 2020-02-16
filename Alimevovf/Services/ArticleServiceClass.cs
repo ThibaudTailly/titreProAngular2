@@ -93,6 +93,30 @@ namespace Alimevo2.Services
             conn.Close();
             return article;
         }
+        public bool AddArticle(Article article)
+        {
+            SqlConnection conn = Database.GetConnexion();
+            String req = "INSERT INTO cook_article VALUES (@Title,@Picture,@Body,@DateOfCreation,@DateOfModification,@FK_cook_user)";
+
+            SqlCommand cmd = new SqlCommand(req, conn);
+            cmd.Parameters.AddWithValue("@Title", article.Title);
+            cmd.Parameters.AddWithValue("@Picture", article.Picture);
+            cmd.Parameters.AddWithValue("@Body", article.Body);
+            cmd.Parameters.AddWithValue("@DateOfCreation", article.DateOfCreation);
+            cmd.Parameters.AddWithValue("@DateOfModification", article.DateOfModification);
+            cmd.Parameters.AddWithValue("@FK_cook_user", article.FK_cook_user);
+
+            conn.Open();
+            int i = cmd.ExecuteNonQuery();
+            conn.Close();
+
+            if (i >= 1)
+                return true;
+            else
+                return false;
+        }
+
+
 
     }
 }

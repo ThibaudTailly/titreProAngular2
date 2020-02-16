@@ -6,6 +6,7 @@ using Alimevo2.Models;
 using Alimevo2.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 
 namespace Alimevo2.Controllers
 {
@@ -30,6 +31,22 @@ namespace Alimevo2.Controllers
         {
             return this.articleSrv.GetArticleById(id);
         }
+
+        [HttpPost("create")]
+        public bool AddArticle([FromBody]JObject data
+               
+            )
+        {
+            Article article = new Article();
+            article.Title = data["title"].ToString();
+            article.Picture = data["picture"].ToString();
+            article.Body = data["body"].ToString();
+            article.DateOfCreation =  DateTime.Today;
+            article.DateOfModification = DateTime.Today;
+            article.FK_cook_user = Convert.ToInt32(data["fkCookUser"].ToString());
+            return this.articleSrv.AddArticle(article);
+        }
+
     }
 
 }
