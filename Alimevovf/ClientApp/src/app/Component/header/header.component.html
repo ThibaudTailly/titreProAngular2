@@ -37,9 +37,9 @@
         <app-modalConnexion></app-modalConnexion>
       </li>
     </ul>
-    <ul *ngIf="auth.isLogged()">
-      <li>
-        <button (click)="auth.logOut()">Deconnexion</button>
+    <ul *ngIf="auth.isLogged()" class="navbar-nav text-center p-2">
+      <li class="nav-item ">
+        <a class="text-co text-light" (click)="auth.logOut()">Deconnexion</a>
       </li>
     </ul>
 
