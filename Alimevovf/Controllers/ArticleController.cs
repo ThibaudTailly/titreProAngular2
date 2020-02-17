@@ -46,7 +46,6 @@ namespace Alimevo2.Controllers
             article.FK_cook_user = Convert.ToInt32(data["fkCookUser"].ToString());
             return this.articleSrv.AddArticle(article);
         }
-
     }
 
 }

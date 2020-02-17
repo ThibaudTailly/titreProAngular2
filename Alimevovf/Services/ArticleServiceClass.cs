@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace Alimevo2.Services
 {
     public class ArticleService
@@ -115,6 +116,56 @@ namespace Alimevo2.Services
             else
                 return false;
         }
+        public bool DeleteArticle(int id)
+        {
+            SqlConnection conn = Database.GetConnexion();
+            String req = "DELETE FROM cook_article WHERE id = @id";
+
+            SqlCommand cmd = new SqlCommand(req, conn);
+            cmd.Parameters.AddWithValue("@id", id);
+
+            conn.Open();
+            int i = cmd.ExecuteNonQuery();
+            conn.Close();
+            if (i >= 1)
+                return true;
+            else
+                return false;
+        }
+        public bool UpdateArticle(Article article)
+        {
+            SqlConnection conn = Database.GetConnexion();
+            string req = "UPDATE cook_article SET name = @name, body = @body , title = @title, picture = @picture" +
+                " WHERE id = @id";
+
+            SqlCommand cmd = new SqlCommand(req, conn);
+            cmd.Parameters.AddWithValue("@id", article.Id);
+            cmd.Parameters.AddWithValue("@picture", article.Picture);
+            cmd.Parameters.AddWithValue("@body", article.Body);
+            cmd.Parameters.AddWithValue("@title", article.Title);
+
+            conn.Open();
+            int i = cmd.ExecuteNonQuery();
+            conn.Close();
+
+            if (i >= 1)
+                return true;
+            else
+                return false;
+        }
+       /* public List<Article> searchArticle(string searchString)
+        {
+            
+            var article = from cook_article in COOK_ALIMEVO
+                         select cook_article;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                article = article.Where(s => s.Title.Contains(searchString));
+            }
+
+            return article;
+        }*/
 
 
 
