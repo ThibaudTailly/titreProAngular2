@@ -34,9 +34,10 @@ namespace Alimevo2.Controllers
 
         [HttpPost("create")]
         public bool AddArticle([FromBody]JObject data
-               
+
             )
         {
+
             Article article = new Article();
             article.Title = data["title"].ToString();
             article.Picture = data["picture"].ToString();
@@ -46,6 +47,30 @@ namespace Alimevo2.Controllers
             article.FK_cook_user = Convert.ToInt32(data["fkCookUser"].ToString());
             return this.articleSrv.AddArticle(article);
         }
+    //    [HttpPost("create")]
+    //    public bool AddArticle(
+    //        string title,
+    //        string picture,
+    //        string body,
+    //        int cookUser
+    //        )
+    //    {
+    //        var test = Request.Body;
+    //        Article article = new Article();
+    //        article.Title = Request.Form["title"];
+    //        article.Picture = picture;
+    //        article.Body = body;
+    //        article.DateOfCreation = DateTime.Today;
+    //        article.DateOfModification = DateTime.Today;
+    //        article.FK_cook_user = cookUser;
+
+            
+
+
+    //        return this.articleSrv.AddArticle(article);
+
+
+    //    }
     }
 
 }

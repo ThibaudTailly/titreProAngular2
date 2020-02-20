@@ -156,7 +156,7 @@ namespace Alimevo2.Services
        /* public List<Article> searchArticle(string searchString)
         {
             
-            var article = from cook_article in COOK_ALIMEVO
+            var article = from cook_article in _COOK_ALIMEVO
                          select cook_article;
 
             if (!String.IsNullOrEmpty(searchString))

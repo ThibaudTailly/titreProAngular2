@@ -27,6 +27,7 @@ import { BlogPageComponent } from './pages/blog-page/blog-page.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { ArticlePageComponent } from './pages/article-page/article-page.component';
 import { EditArticlePageComponent } from './pages/edit-article-page/edit-article-page.component';
+import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import { IsAdminGuard } from '../app/Component/guards/is-admin.guard';
 
 const routes: Routes = [
@@ -46,6 +47,10 @@ const routes: Routes = [
     canActivate: [IsAdminGuard],
   },
   { path: 'article/:id', component: ArticlePageComponent },
+  {
+    path: 'admin', component: AdminPageComponent,
+    canActivate: [IsAdminGuard],
+  },
   { path: '**', component: PageNotFoundComponent }
 ];
 
@@ -68,7 +73,8 @@ const routes: Routes = [
     BlogPageComponent,
     buttonAccesComponent,
     ArticlePageComponent,
-    EditArticlePageComponent
+    EditArticlePageComponent,
+    AdminPageComponent
   ],
   imports: [
     BrowserModule,

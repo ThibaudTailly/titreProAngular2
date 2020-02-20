@@ -2,22 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { Article } from '../../models/article';
 import { ArticleService } from '../../services/article.service';
 import { ActivatedRoute } from '@angular/router';
-import { DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'ck-edit-article-page',
-  templateUrl: './edit-article-page.component.html',
-  styleUrls: ['./edit-article-page.component.css'],
-  providers: [DatePipe] // injectable service
+  selector: 'ck-admin-page',
+  templateUrl: './admin-page.component.html',
+  styleUrls: ['./admin-page.component.css']
 })
-export class EditArticlePageComponent implements OnInit {
+export class AdminPageComponent implements OnInit {
   public article: Article;
-  
 
   constructor(
     private actRoute: ActivatedRoute,
-    private articleSrv: ArticleService, // une instance injecté du service articlesrv
-    public datepipe: DatePipe){
+    private articleSrv: ArticleService) {
 
   }
 
@@ -39,7 +35,6 @@ export class EditArticlePageComponent implements OnInit {
         article.picture = data["picture"];
         article.creationDate = new Date(data["creationDate"]);
         article.lastModification = new Date(data["lastModification"]);
-        
 
         this.article = article;
       },
@@ -47,19 +42,17 @@ export class EditArticlePageComponent implements OnInit {
     );
 
   }
-
-  formatDate(date: Date) {
-    return this.datepipe.transform(date, 'dd/MM/yyyy')
-  }
   
   onSubmit() {
 
     if (!this.article.id) {
-      this.articleSrv.create(this.article) 
-        .subscribe( //methode asynchrone
+      this.articleSrv.create(this.article)
+        .subscribe(
           (data: any) => {
             //renvoyer l'id de l'article au lieu d'un boolean
             console.log(data)
+          
+
           },
           (error: any) => { console.error(error) }
         );

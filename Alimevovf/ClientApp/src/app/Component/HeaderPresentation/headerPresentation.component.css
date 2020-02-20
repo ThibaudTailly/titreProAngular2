@@ -13,12 +13,12 @@ p {
   #container-hp {
     background-image: url("..\..\..\assets\Accueil.jpg");
     background-repeat: no-repeat;
-    background-size: contain;
-    background-size: 100%;
-    height: 200px;
-    background-position-y: -25rem;
+    background-size: cover;
+    height: 35rem;
+    background-position-y: -10rem;
+    background-position-x:center;
     background-attachment: fixed;
-    height: 100%;
+    
   }
 
 
