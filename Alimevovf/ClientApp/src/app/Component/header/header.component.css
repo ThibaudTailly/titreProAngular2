@@ -1,13 +1,25 @@
-.test {
-  background-color: #f08734;
-  height: 3rem;
-}
-.nav-link{
-  font-size:20px;
-}
-.text-co {
-  color: white;
-  font-size: 24px;
-  display:inline-block;
+.intro-2 {
+  background: url("..\..\..\assets\Accueil.jpg");
+  background-size: cover;
 }
 
+.navbar {
+  background-color: transparent;
+}
+
+.top-nav-collapse {
+  background-color: #4285F4;
+}
+
+@media only screen and (max-width: 768px) {
+  .navbar {
+    background: url("..\..\..\assets\Accueil.jpg");
+  }
+}
+
+html,
+body,
+header,
+.view {
+  height: 100%;
+}

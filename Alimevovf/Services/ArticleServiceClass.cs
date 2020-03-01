@@ -7,10 +7,29 @@ using System.Linq;
 using System.Threading.Tasks;
 
 
+
 namespace Alimevo2.Services
 {
+
     public class ArticleService
     {
+        public enum Orders{BY_ID,BY_NAME,BY_DATE_OF_MODIFICATION};
+
+        public string GetColumnName(Orders order)
+        {
+            switch (order)
+            {
+                case Orders.BY_ID:
+                    return "id";
+                case Orders.BY_NAME:
+                    return "title";
+                case Orders.BY_DATE_OF_MODIFICATION:
+                    return "date_of_modification";
+                default:
+                    return "id";
+            }
+        }
+
         public Article[] GetAllArticlestest()
         {
             // ligne 14 provisoire = appelle a la database
@@ -97,7 +116,7 @@ namespace Alimevo2.Services
         public bool AddArticle(Article article)
         {
             SqlConnection conn = Database.GetConnexion();
-            String req = "INSERT INTO cook_article VALUES (@Title,@Picture,@Body,@DateOfCreation,@DateOfModification,@FK_cook_user)";
+            String req = "INSERT INTO cook_article VALUES (@Title,@Body,@Picture,@DateOfCreation,@DateOfModification,@FK_cook_user)";
 
             SqlCommand cmd = new SqlCommand(req, conn);
             cmd.Parameters.AddWithValue("@Title", article.Title);
@@ -116,7 +135,7 @@ namespace Alimevo2.Services
             else
                 return false;
         }
-        public bool DeleteArticle(int id)
+        public bool DeleteArticleById(int id)
         {
             SqlConnection conn = Database.GetConnexion();
             String req = "DELETE FROM cook_article WHERE id = @id";
@@ -153,19 +172,64 @@ namespace Alimevo2.Services
             else
                 return false;
         }
-       /* public List<Article> searchArticle(string searchString)
+        public List<Article> GetArticles(int amount, int page,Orders order, bool asc)
         {
-            
-            var article = from cook_article in _COOK_ALIMEVO
-                         select cook_article;
+            List<Article> listarticle = new List<Article>();
 
-            if (!String.IsNullOrEmpty(searchString))
+            try
             {
-                article = article.Where(s => s.Title.Contains(searchString));
+                SqlConnection conn = Database.GetConnexion();
+                String req = "SELECT TOP 2 id, title, body, picture, date_of_creation, date_of_modification, id_cook_user FROM cook_article order by title";            
+                SqlCommand cmd = new SqlCommand(req, conn);
+                if(amount <= 0)
+                {
+                    amount = 1;    
+                }
+                if(page <= 0)
+                {
+                    page = 1;
+                }
+                int offset = (page - 1)*amount ;
+                string column = GetColumnName(order);
+                cmd.Parameters.AddWithValue("@amount", amount);
+                //cmd.Parameters.AddWithValue("@offset", offset);
+                cmd.Parameters.AddWithValue("@order", column);
+                //cmd.Parameters.AddWithValue("@way", asc? "ASC":"DESC");
+                conn.Open();
+                
+                SqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    Article article = new Article();
+                    article.Id = Convert.ToInt32(rdr["id"]);
+                    article.Title = rdr["title"].ToString();
+                    article.Body = rdr["body"].ToString();
+                    article.Picture = rdr["picture"].ToString();
+                    article.DateOfCreation = Convert.ToDateTime(rdr["date_of_creation"]);
+                    article.DateOfModification = Convert.ToDateTime(rdr["date_of_modification"]);
+                    article.FK_cook_user = Convert.ToInt32(rdr["id_cook_user"]);
+                    listarticle.Add(article);
+                }
             }
+            catch (Exception e)
+            {
+                Console.WriteLine("erreur suivante s'est produite" + e.Message);
+            }
+            return listarticle;
+        }
+        /* public List<Article> searchArticle(string searchString)
+         {
 
-            return article;
-        }*/
+             var article = from cook_article in _COOK_ALIMEVO
+                          select cook_article;
+
+             if (!String.IsNullOrEmpty(searchString))
+             {
+                 article = article.Where(s => s.Title.Contains(searchString));
+             }
+
+             return article;
+         }*/
 
 
 

@@ -12,6 +12,7 @@ import { buttonAccesComponent } from '../app/Component/buttonAcces/buttonAcces.c
 
 import { partenaireComponent } from '../app/Component/partenaire/partenaire.component';
 import { HeaderPresentationComponent } from '../app/Component/headerPresentation/headerPresentation.component';
+import { HeaderPresentation2Component } from '../app/Component/headerPresentation2/headerPresentation2.component';
 import { PresentationArticleComponent } from '../app/Component/PresentationArticle/PresentationArticle.component';
 import { ModalComponent } from '../app/Component/modal/modal.component';
 import { ModalConnexionComponent } from '../app/Component/modalConnexion/modalConnexion.component';
@@ -67,6 +68,7 @@ const routes: Routes = [
     CardsComponent,
     PresentationArticleComponent,
     HeaderPresentationComponent,
+    HeaderPresentation2Component,
     HeaderComponent,
     PageNotFoundComponent,
     MainPageComponent,

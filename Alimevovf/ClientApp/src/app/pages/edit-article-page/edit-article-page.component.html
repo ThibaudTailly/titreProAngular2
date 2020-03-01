@@ -2,7 +2,6 @@
   <div class="row">
     <div class="col-md-12">
       <h1 class="text-center"> Creation d'un nouvel article</h1>
-<<<<<<< HEAD
     </div>
   </div>
   <div class="row">
@@ -33,38 +32,7 @@
   </div>
   {{formatDate(article.creationDate)}}
   {{formatDate(article.lastModification)}}
-=======
-    </div>
-  </div>
-  <div class="row">
-    <div class="input-group col-md-12 ">
-      <div class="input-group-prepend ">
-        <h1><input type="text" class="form-control formControl" [(ngModel)]="article.title" /> </h1>
 
-      </div>
-    </div>
-  </div>
-  <h3 class="text-center">Indiquez le lien vers l'image</h3>
-  <div class="row">
-    <div class="input-group col-md-12 ">
-      <div class="input-group-prepend">
-
-        <input type="text" class="form-control formControl" [(ngModel)]="article.picture" />
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="input-group col-md-12 ">
-      <div class="input-group-prepend">
-        <article>
-          <textarea [(ngModel)]="article.body"> </textarea>
-        </article>
-      </div>
-    </div>
-  </div>
-  {{article.creationDate}}
-  {{article.lastModification}}
->>>>>>> ee40694eff45ae52b78979aadfc5c09c3aba2515
   <div class="row rowButton">
     <button type="button" class="btn btn-lg" (click)="onSubmit()">Sauvegarder</button>
   </div>

@@ -11,7 +11,7 @@ p {
     /* Rédigez vos propriétés CSS ici */
 }
   #container-hp {
-    background-image: url("..\..\..\assets\Accueil.jpg");
+    background-image: url("..\..\..\assets\banniere.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     height: 35rem;
