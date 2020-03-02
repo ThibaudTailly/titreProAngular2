@@ -21,15 +21,26 @@ export class ArticleService {
     return this.http.get("/api/article/" + id) //creer un obj observable
   }
   create(article: Article){
-    let data: any = {}
-    data.title = article.title;
-    data.picture = article.picture;
-    data.body = article.body;
+    let darticle: any = {}
+    darticle.Title = article.title;
+    darticle.Picture = article.picture;
+    darticle.Body = article.body;
     /*params.dateOfCreation = article.creationDate;
     params.dateOfModification = article.lastModification;*/
-    data.cookUser = article.fkCookUser;
-    console.log(data);
-    return this.http.post("/api/article/createtest", { body :data });
+    darticle.FK_cook_user = article.fkCookUser;
+    console.log(darticle);
+    return this.http.post("/api/article/create",  darticle );
+  }
+  update(article: Article) {
+    let darticle: any = {}
+    darticle.Title = article.title;
+    darticle.Picture = article.picture;
+    darticle.Body = article.body;
+    /*params.dateOfCreation = article.creationDate;
+    params.dateOfModification = article.lastModification;*/
+    darticle.FK_cook_user = article.fkCookUser;
+    console.log(darticle);
+    return this.http.post("/api/article/update", darticle);
   }
   getArticles(amount: number, page: number, order: string, asc: boolean) {
     let queryParams = `?amount=${amount}&page=${page}&order=${order}&asc=${asc}`;

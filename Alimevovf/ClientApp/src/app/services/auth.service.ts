@@ -22,6 +22,7 @@ export class AuthService {
     let user = new User();
     let storedUser = JSON.parse(userstr);
     if (storedUser != null) {
+      user.id = storedUser['id'];
       user.firstname = storedUser['firstname'];
       user.lastname = storedUser['lastname'];
       user.email = storedUser['email'];
@@ -59,6 +60,7 @@ export class AuthService {
     if (pseudo == "admin" && password == "admin")
     {
       let user = new User();
+      user.id = 1
       user.pseudo = "pseudo";
       user.firstname = "poipoi";
       user.lastname = "poipoi";

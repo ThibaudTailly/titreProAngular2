@@ -154,7 +154,7 @@ namespace Alimevo2.Services
         public bool UpdateArticle(Article article)
         {
             SqlConnection conn = Database.GetConnexion();
-            string req = "UPDATE cook_article SET name = @name, body = @body , title = @title, picture = @picture" +
+            string req = "UPDATE cook_article SET name = @name, body = @body , title = @title, picture = @picture , date_of_modification = @dom" + 
                 " WHERE id = @id";
 
             SqlCommand cmd = new SqlCommand(req, conn);
@@ -162,6 +162,7 @@ namespace Alimevo2.Services
             cmd.Parameters.AddWithValue("@picture", article.Picture);
             cmd.Parameters.AddWithValue("@body", article.Body);
             cmd.Parameters.AddWithValue("@title", article.Title);
+            cmd.Parameters.AddWithValue("@dom", article.DateOfModification);
 
             conn.Open();
             int i = cmd.ExecuteNonQuery();
@@ -172,8 +173,11 @@ namespace Alimevo2.Services
             else
                 return false;
         }
+
+        
         public List<Article> GetArticles(int amount, int page,Orders order, bool asc)
         {
+            // TODO
             List<Article> listarticle = new List<Article>();
 
             try

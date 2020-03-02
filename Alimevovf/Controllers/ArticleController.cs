@@ -37,19 +37,34 @@ namespace Alimevo2.Controllers
         }
 
         [HttpPost("create")]
-        public bool AddArticle([FromBody]JObject data
+        public bool AddArticle([FromBody]Article darticle
 
             )
         {
 
-            Article article = new Article();
-            article.Title = data["title"].ToString();
-            article.Picture = data["picture"].ToString();
-            article.Body = data["body"].ToString();
-            article.DateOfCreation =  DateTime.Today;
-            article.DateOfModification = DateTime.Today;
-            article.FK_cook_user = Convert.ToInt32(data["fkCookUser"].ToString());
-            return this.articleSrv.AddArticle(article);
+            //Article article = new Article();
+            //article.Title = data["title"].ToString();
+            //article.Picture = data["picture"].ToString();
+            //article.Body = data["body"].ToString();
+            darticle.DateOfCreation =  DateTime.Today;
+            darticle.DateOfModification = DateTime.Today;
+            //article.FK_cook_user = Convert.ToInt32(data["fkCookUser"].ToString());
+            return this.articleSrv.AddArticle(darticle);
+        }
+        [HttpPost("update")]
+        public bool UpdateArticle([FromBody]Article darticle
+
+            )
+        {
+
+            //Article article = new Article();
+            //article.Title = data["title"].ToString();
+            //article.Picture = data["picture"].ToString();
+            //article.Body = data["body"].ToString();
+            //darticle.DateOfCreation = DateTime.Today;
+            darticle.DateOfModification = DateTime.Today;
+            //article.FK_cook_user = Convert.ToInt32(data["fkCookUser"].ToString());
+            return this.articleSrv.UpdateArticle(darticle);
         }
         [HttpPost("createtest")]
         public bool AddArticleTest()

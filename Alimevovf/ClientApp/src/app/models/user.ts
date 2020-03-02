@@ -4,6 +4,7 @@ export enum UserRole {
 }
 
 export class User {
+  id: number = 0
   pseudo: string = ""
   token: string = ""
   firstname: string = ""
