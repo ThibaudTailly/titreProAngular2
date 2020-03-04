@@ -33,6 +33,7 @@ export class ArticleService {
   }
   update(article: Article) {
     let darticle: any = {}
+    darticle.Id = article.id;
     darticle.Title = article.title;
     darticle.Picture = article.picture;
     darticle.Body = article.body;

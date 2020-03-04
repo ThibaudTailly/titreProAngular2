@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Article } from '../../models/article';
 import { ArticleService } from '../../services/article.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 
@@ -17,6 +17,7 @@ export class EditArticlePageComponent implements OnInit {
 
   constructor(
     private actRoute: ActivatedRoute,
+    private router: Router,
     private authSrv: AuthService,
     private articleSrv: ArticleService, // une instance injecté du service articlesrv
     public datepipe: DatePipe) {
@@ -49,18 +50,21 @@ export class EditArticlePageComponent implements OnInit {
     //REGARDER CAR C OBSCUR
     this.articleSrv.getById(id).subscribe(
       (data: any) => {
-        console.log(data)
+        
+        
 
         let article: Article = new Article();
         article.id = data["id"];
         article.title = data["title"];
         article.body = data["body"];
         article.picture = data["picture"];
-        article.creationDate = new Date(data["creationDate"]);
-        article.lastModification = new Date(data["lastModification"]);
+        article.creationDate = new Date(data["dateOfCreation"]);
+        article.lastModification = new Date(data["dateOfModification"]);
+        console.log(data);
         article.fkCookUser = data["fkCookUser"];
 
         this.article = article;
+        console.log(this.article)
       },
       (error: any) => { console.error(error) }
     );
@@ -68,10 +72,11 @@ export class EditArticlePageComponent implements OnInit {
   }
 
   formatDate(date: Date) {
+    
     return this.datepipe.transform(date, 'dd/MM/yyyy')
   }
 
-  onSubmit() {
+  saveArticle() {
 
     if (!this.article.id) {
       this.article.fkCookUser = this.authSrv.user.id;
@@ -95,13 +100,17 @@ export class EditArticlePageComponent implements OnInit {
     }
 
   }
+  deleteArticle() {
+    this.articleSrv.deleteArticleById(this.article.id).subscribe(
+      (data: any) => {
+        this.router.navigate(["/blog"]);
+      //renvoyer l'id de l'article au lieu d'un boolean
+        console.log(data)
+
+      },
+      (error: any) => { console.error(error) }
+    );
+  }
 }
-  /*onDelete(){
-   *this.articleSrv.delete(this.article).subscribe(data: any) => {
-          //renvoyer l'id de l'article au lieu d'un boolean
-          console.log(data)
-        },
-        (error: any) => { console.error(error) }
-      );
-   * }*/
+  
 

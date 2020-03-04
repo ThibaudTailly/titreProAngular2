@@ -5,7 +5,7 @@
   </div>
 
 
-    <div class=" text-center">
+    <div class=" text-center" *ngIf="isAdmin()">
       <a class="btn btn-default " routerLink="/article/edit/{{article.id}}">Modifier</a>
     </div>
   

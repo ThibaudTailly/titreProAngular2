@@ -2,47 +2,58 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Alimevo2.Services
 {
     public class UserServiceClass
     {
-        /*public bool Authentifier(string strUtilisateur, string strMotDePasse)
+        public static string HashPassword(string password)
         {
-           
-        }*/
+            SHA256 hashMdp = SHA256.Create();
 
-        //public bool Authentifier(string nom, string motDePasse)
-        //{
-        //    bool flag = false;
-        //    // Cryptage du mot de passe
-        //    motDePasse = FormsAuthentication.HashPasswordForStoringInConfigFile(motDePasse, "MD5");
-        //    // Création d'une connexion SGBD
+            byte[] hashValue = hashMdp.ComputeHash(Encoding.UTF8.GetBytes(password + "AlimEvo"));
+            StringBuilder builder = new StringBuilder();
+            for (int i = 0; i < hashValue.Length; i++)
+            {
+                builder.Append(hashValue[i].ToString("x2"));
+            }
+            string hashed = builder.ToString();
+            return hashed;
+        }
 
-        //    SqlConnection conn = Database.GetConnexion();
-        //    // Définition de la requête à exécuter
-        //    SqlCommand oCommand = new SqlCommand("SELECT * FROM Utilisateurs WHERE name='" + nom + "'", conn);
-        //    try
-        //    {
-        //        // Ouverture de la connexion et exécution de la requête
-        //        conn.Open();
-        //        SqlDataReader drUtilisateur = oCommand.ExecuteReader();
-        //        // Parcours de la liste des utilisateurs
-        //        while (drUtilisateur.Read())
-        //        {
-        //            if (drUtilisateur["motdepasse"].ToString() == motDePasse)
-        //            {
-        //                flag = true; break;
-        //            }
-        //        }
-        //    }
-        //    catch
-        //    {
-        //        flag = false;
-        //    }
-        //    oConnexion.Close();
-        //    return flag;
-        //}
+        public bool Authentifier(string mail, string password)
+        {
+            bool flag = false;
+            // Cryptage du mot de passe
+            string hashed = HashPassword(password);
+            // Création d'une connexion SGBD
+
+            SqlConnection conn = Database.GetConnexion();
+            // Définition de la requête à exécuter
+            SqlCommand oCommand = new SqlCommand("SELECT * FROM Utilisateurs WHERE email='" + mail + "'", conn);
+            try
+            {
+                // Ouverture de la connexion et exécution de la requête
+                conn.Open();
+                SqlDataReader drUtilisateur = oCommand.ExecuteReader();
+                // Parcours de la liste des utilisateurs
+                while (drUtilisateur.Read())
+                {
+                    if (drUtilisateur["motdepasse"].ToString() == hashed)
+                    {
+                        flag = true; break;
+                    }
+                }
+            }
+            catch
+            {
+                flag = false;
+            }
+            conn.Close();
+            return flag;
+        }
         public List<User> GetAllUsers()
         {
             List<User> listuser = new List<User>();
@@ -78,7 +89,7 @@ namespace Alimevo2.Services
         public bool AddUser(User user)
         {
             SqlConnection conn = Database.GetConnexion();
-            String req = "INSERT INTO cook_user VALUES (@Name,@Firstname,@Name_establishment,@email,@phoneNumber,@prorole,@location,@userrole)";          
+            String req = "INSERT INTO cook_user VALUES (@Name,@Firstname,@Name_establishment,@email,@phoneNumber,@prorole,@location,@userrole,@password)";          
             
             SqlCommand cmd = new SqlCommand(req, conn);
             cmd.Parameters.AddWithValue("@Name", user.Name);
@@ -89,6 +100,7 @@ namespace Alimevo2.Services
             cmd.Parameters.AddWithValue("@prorole", user.prorole);
             cmd.Parameters.AddWithValue("@location", user.location);
             cmd.Parameters.AddWithValue("@userrole", user.userrole);
+            cmd.Parameters.AddWithValue("@password", HashPassword(user.password));
 
             conn.Open();
             int i = cmd.ExecuteNonQuery();

@@ -2,6 +2,7 @@
 import {  ActivatedRoute } from '@angular/router';
 import { ArticleService } from '../../services/article.service';
 import { Article } from '../../models/article';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'ck-article-page',
@@ -11,15 +12,18 @@ import { Article } from '../../models/article';
 export class ArticlePageComponent implements OnInit {
 
   article: Article = null
+  
 
   constructor(
     //service qui va gerer les informations de l'url 
     private actRoute: ActivatedRoute,
-    private articleSrv : ArticleService
+    private articleSrv: ArticleService,
+    private authSrv: AuthService
     ) {
    
   }
 
+  
   ngOnInit()
   {
     // snapshot : etat a l'instant t, paramMap list des parametres données ds l'url
@@ -40,6 +44,10 @@ export class ArticlePageComponent implements OnInit {
       },
       (error: any) => { console.error(error) }
     );
+    
+  }
+  isAdmin() {
+    return this.authSrv.isAdmin();
   }
 
 }

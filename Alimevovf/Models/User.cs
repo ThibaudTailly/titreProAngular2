@@ -17,6 +17,8 @@ namespace Alimevo2.Models
         public int location { get; set; }
         public int userrole { get; set; }
 
+        public string password { get; set; }
+
         public override string ToString()
         {
             return ("mon objet user: " + Id + "son nom " + Name + " firstname " + Firstname + " " + email + " " + userrole);
