@@ -1,9 +1,16 @@
 <div *ngIf='article' class="container">
-  <h4>{{article.title}}&nbsp;<strong>{{article.id}}</strong></h4>
+  <p class="h1 text-center">{{article.title}}&nbsp;<strong>{{article.id}}</strong></p>
   <div [innerHTML]="article.body">
 
   </div>
-  <a class="btn btn-default" routerLink="/article/edit/{{article.id}}">Modifier</a>
+
+
+    <div class=" text-center">
+      <a class="btn btn-default " routerLink="/article/edit/{{article.id}}">Modifier</a>
+    </div>
+  
+    
+  
 </div>
 <div *ngIf='!article' class="container">
   <p>Loading</p>

@@ -10,16 +10,15 @@ p {
 {
     /* Rédigez vos propriétés CSS ici */
 }
-  #container-hp {
-    background-image: url("..\..\..\assets\Accueil.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 35rem;
-    background-position-y: -10rem;
-    background-position-x:center;
-    background-attachment: fixed;
-    
-  }
+#container-hp {
+  /*background-image: url("..\..\..\assets\Accueil.jpg");*/
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 3rem;
+  background-position-y: -10rem;
+  background-position-x: center;
+  background-attachment: fixed;
+}
 
 
 .test {

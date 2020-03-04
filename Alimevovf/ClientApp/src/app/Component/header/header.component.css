@@ -1,25 +1,141 @@
-.intro-2 {
-  background: url("..\..\..\assets\Accueil.jpg");
-  background-size: cover;
+.body {
+  font-family: 'Gothic A1', sans-serif;
+  font-size: 16px;
 }
 
-.navbar {
-  background-color: transparent;
+p {
+  color: red;
+  font-size: 1em;
 }
 
-.top-nav-collapse {
-  background-color: #4285F4;
+.navbar-brand span {
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  font-family: 'Kaushan Script','Helvetica Neue',Helvetica,Arial,cursive;
 }
 
-@media only screen and (max-width: 768px) {
-  .navbar {
-    background: url("..\..\..\assets\Accueil.jpg");
+.navbar-brand {
+  color: #fff;
+  font-size: 25px;
+  font-family: 'Kaushan Script','Helvetica Neue',Helvetica,Arial,cursive;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.navbar-nav .nav-item .nav-link {
+  padding: 1.1em 1em !important;
+  font-size: 120%;
+  font-weight: 500;
+  letter-spacing: 1px;
+  font-family: 'Gothic A1', sans-serif;
+}
+.start {
+  padding: 1.1em 1em !important;
+  font-size: 120%;
+  font-weight: 500;
+  letter-spacing: 1px;
+  font-family: 'Gothic A1', sans-serif;
+  color:red;
+}
+
+  .navbar-nav .nav-item .nav-link:hover {
+    color: red;
   }
+
+.navbar-expand-md .navbar-nav .dropdown-menu {
+  border-top: 3px solid #fed136;
 }
 
-html,
-body,
-header,
-.view {
-  height: 100%;
+.dropdown-item:hover {
+  background-color: #fed136;
+  color: #fff;
+}
+
+nav {
+  -webkit-transition: padding-top .3s,padding-bottom .3s;
+  -moz-transition: padding-top .3s,padding-bottom .3s;
+  transition: padding-top .3s,padding-bottom .3s;
+  border: none;
+  height:5rem;
+  position:absolute;
+}
+
+.shrink {
+  padding-top: 0;
+  padding-bottom: 0;
+  background-color: #212529;
+}
+
+.banner {
+  background: url("..\..\..\assets\Accueil.jpg");
+  text-align: center;
+  color: #fff;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center center;
+  background-size: cover;
+  height:20rem;
+}
+
+.banner-text {
+  padding: 200px 0 150px 0;
+}
+
+.banner-heading {
+  font-family: 'Lobster', cursive;
+  font-size: 75px;
+  font-weight: 700;
+  line-height: 100px;
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+.banner-sub-heading {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 30px;
+  font-weight: 300;
+  line-height: 30px;
+  margin-bottom: 50px;
+  color: #fff;
+}
+
+.btn-banner {
+  padding: 5px 20px;
+  border-radius: 10px;
+  font-weight: 700;
+  line-height: 1.5;
+  text-align: center;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.text-intro {
+  width: 90%;
+  margin: auto;
+  text-align: center;
+  padding-top: 30px;
+}
+.search_box {
+  width: 100%;
+ 
+}
+  .search_box input[type="text"] {
+    width: 100%;
+    height:4rem;
+    box-sizing: border-box;
+    background: rgba(0,0,0,0.3);
+    border: 2px solid #fff;
+    border-radius: 10px;
+    outline: none;
+  }
+.fa-search {
+  position: absolute;
+  padding-right:12rem;
+  padding-top:4rem;
+  transform: translateY(-50%);
+  right: 25px;
+  color: #fff;
+  font-size: 25px;
+ 
 }

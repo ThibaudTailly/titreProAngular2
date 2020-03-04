@@ -56,7 +56,7 @@ namespace Alimevo2.Controllers
 
             )
         {
-
+             int t = darticle.Id ;
             //Article article = new Article();
             //article.Title = data["title"].ToString();
             //article.Picture = data["picture"].ToString();

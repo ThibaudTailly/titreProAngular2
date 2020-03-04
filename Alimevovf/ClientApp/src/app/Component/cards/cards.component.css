@@ -10,19 +10,17 @@ body {
   
 }
 
-
-
 .container-fluid .card {
   position: relative;
   cursor: pointer;
-  background: #349df0;
+  background: transparent;
 }
 
-  .container-fluid .card .face {
+.container-fluid .card .face {
     width: 100%;
     height: 200px;
     transition: 0.5s;
-  }
+}
 
     .container-fluid .card .face.face1 {
       position: relative;
@@ -40,7 +38,7 @@ body {
   }
 
   .container-fluid .card .face.face1 .content {
-    opacity: 0.2;
+    opacity: 0.8;
     transition: 0.5s;
   }
 
@@ -49,7 +47,7 @@ body {
   }
 
   .container-fluid .card .face.face1 .content img {
-    max-width: 100px;
+    max-width: 15em;
   }
 
   .container-fluid .card .face.face1 .content h3 {
@@ -59,17 +57,19 @@ body {
     text-align: center;
     font-size: 1.5em;
   }
+.width-img{
+    max-width:10em;
+}
 
-  .container-fluid .card .face.face2 {
-    position: relative;
-    background: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    
-    transform: translateY(-100px);
-  }
+.container-fluid .card .face.face2 {
+  position: relative;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  transform: translateY(-100px);
+}
 
   .container-fluid .card:hover .face.face2 {
     transform: translateY(0);

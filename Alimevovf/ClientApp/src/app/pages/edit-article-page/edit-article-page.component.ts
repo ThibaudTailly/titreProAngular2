@@ -34,6 +34,7 @@ export class EditArticlePageComponent implements OnInit {
      this.articleSrv.getById(id).subscribe(
       (data: any) => {
         console.log(data)
+        
         let article: Article = new Article();
         article.id = data["id"];
         article.title = data["title"];
@@ -41,9 +42,8 @@ export class EditArticlePageComponent implements OnInit {
         article.picture = data["picture"];
         article.creationDate = new Date(data["creationDate"]);
         article.lastModification = new Date(data["lastModification"]);
-         article.fkCookUser = data["fkCookUser"];
-        
-        
+        article.fkCookUser = data["fkCookUser"];
+    
         this.article = article;
       },
       (error: any) => { console.error(error) }

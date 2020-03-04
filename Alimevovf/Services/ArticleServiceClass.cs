@@ -154,7 +154,7 @@ namespace Alimevo2.Services
         public bool UpdateArticle(Article article)
         {
             SqlConnection conn = Database.GetConnexion();
-            string req = "UPDATE cook_article SET name = @name, body = @body , title = @title, picture = @picture , date_of_modification = @dom" + 
+            string req = "UPDATE cook_article SET body = @body , title = @title, picture = @picture , date_of_modification = @dom" + 
                 " WHERE id = @id";
 
             SqlCommand cmd = new SqlCommand(req, conn);
