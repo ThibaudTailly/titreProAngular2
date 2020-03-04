@@ -13,28 +13,44 @@ import { AuthService } from '../../services/auth.service';
 })
 export class EditArticlePageComponent implements OnInit {
   public article: Article;
-  
+
 
   constructor(
     private actRoute: ActivatedRoute,
     private authSrv: AuthService,
     private articleSrv: ArticleService, // une instance injecté du service articlesrv
-    public datepipe: DatePipe){
+    public datepipe: DatePipe) {
 
   }
 
   ngOnInit() {
+    /*
+      this.getImage();
+    
+
+    getImage(){
+      switch (value) {
+        case 'a': {
+          this.imageName = 'Nebula.jpg';
+          break;
+        }
+        case 'b': {
+          this.imageName = 'Eclipse.jpeg';
+          break;
+        }
+      }
+    }*/
     //recuperation id
     let id = this.actRoute.snapshot.paramMap.get('id');
     this.article = new Article();
     if (!id) {
-      return 
+      return
     }
-   //REGARDER CAR C OBSCUR
-     this.articleSrv.getById(id).subscribe(
+    //REGARDER CAR C OBSCUR
+    this.articleSrv.getById(id).subscribe(
       (data: any) => {
         console.log(data)
-        
+
         let article: Article = new Article();
         article.id = data["id"];
         article.title = data["title"];
@@ -43,7 +59,7 @@ export class EditArticlePageComponent implements OnInit {
         article.creationDate = new Date(data["creationDate"]);
         article.lastModification = new Date(data["lastModification"]);
         article.fkCookUser = data["fkCookUser"];
-    
+
         this.article = article;
       },
       (error: any) => { console.error(error) }
@@ -54,12 +70,12 @@ export class EditArticlePageComponent implements OnInit {
   formatDate(date: Date) {
     return this.datepipe.transform(date, 'dd/MM/yyyy')
   }
-  
+
   onSubmit() {
-    
+
     if (!this.article.id) {
       this.article.fkCookUser = this.authSrv.user.id;
-      this.articleSrv.create(this.article) 
+      this.articleSrv.create(this.article)
         .subscribe( //methode asynchrone
           (data: any) => {
             //renvoyer l'id de l'article au lieu d'un boolean
@@ -77,6 +93,15 @@ export class EditArticlePageComponent implements OnInit {
         (error: any) => { console.error(error) }
       );
     }
-   
+
   }
 }
+  /*onDelete(){
+   *this.articleSrv.delete(this.article).subscribe(data: any) => {
+          //renvoyer l'id de l'article au lieu d'un boolean
+          console.log(data)
+        },
+        (error: any) => { console.error(error) }
+      );
+   * }*/
+

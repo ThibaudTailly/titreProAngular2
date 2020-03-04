@@ -1,6 +1,6 @@
-.btn.btn-default {
+.btn-article {
   background-color: white;
-  border: 1px solid green;
+  border: 1px solid black;
 }
 .btn {
   font-weight: 500;

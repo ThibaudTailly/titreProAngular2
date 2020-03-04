@@ -7,3 +7,6 @@
 color:white;
 font-size:24px;
 }
+.modal-backdrop {
+  z-index: -1;
+}

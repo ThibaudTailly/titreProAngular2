@@ -67,6 +67,10 @@ nav {
   background-color: #212529;
 }
 
+.img-responsive{
+    max-height:3rem;
+}
+
 .banner {
   background: url("..\..\..\assets\Accueil.jpg");
   text-align: center;
@@ -75,7 +79,7 @@ nav {
   background-attachment: scroll;
   background-position: center center;
   background-size: cover;
-  height:20rem;
+  height: 20rem;
 }
 
 .banner-text {
@@ -130,11 +134,7 @@ nav {
     outline: none;
   }
 .fa-search {
-  position: absolute;
-  padding-right:12rem;
-  padding-top:4rem;
-  transform: translateY(-50%);
-  right: 25px;
+   
   color: #fff;
   font-size: 25px;
  

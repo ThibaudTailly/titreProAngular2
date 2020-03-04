@@ -7,36 +7,42 @@ namespace Alimevo2.Services
 {
     public class UserServiceClass
     {
-        public bool Authentifier(string strUtilisateur, string strMotDePasse)
+        /*public bool Authentifier(string strUtilisateur, string strMotDePasse)
         {
-            bool flag = false;
-            // Cryptage du mot de passe
-            //strMotDePasse = FormsAuthentication.HashPasswordForStoringInConfigFile(strMotDePasse, "MD5");
-            // Création d'une connexion SGBD
-            SqlConnection oConnexion = new SqlConnection("user id=sa;password=;initial catalog=pubs;data source=pttravail");
-            // Définition de la requête à exécuter
-            SqlCommand oCommand = new SqlCommand("SELECT * FROM Utilisateurs WHERE nom='" + strUtilisateur + "'", oConnexion);
-            try
-            {
-                // Ouverture de la connexion et exécution de la requête
-                oConnexion.Open();
-                SqlDataReader drUtilisateur = oCommand.ExecuteReader();
-                // Parcours de la liste des utilisateurs
-                while (drUtilisateur.Read())
-                {
-                    if (drUtilisateur["motdepasse"].ToString() == strMotDePasse)
-                    {
-                        flag = true; break;
-                    }
-                }
-            }
-            catch
-            {
-                flag = false;
-            }
-            oConnexion.Close();
-            return flag;
-        }
+           
+        }*/
+
+        //public bool Authentifier(string nom, string motDePasse)
+        //{
+        //    bool flag = false;
+        //    // Cryptage du mot de passe
+        //    motDePasse = FormsAuthentication.HashPasswordForStoringInConfigFile(motDePasse, "MD5");
+        //    // Création d'une connexion SGBD
+
+        //    SqlConnection conn = Database.GetConnexion();
+        //    // Définition de la requête à exécuter
+        //    SqlCommand oCommand = new SqlCommand("SELECT * FROM Utilisateurs WHERE name='" + nom + "'", conn);
+        //    try
+        //    {
+        //        // Ouverture de la connexion et exécution de la requête
+        //        conn.Open();
+        //        SqlDataReader drUtilisateur = oCommand.ExecuteReader();
+        //        // Parcours de la liste des utilisateurs
+        //        while (drUtilisateur.Read())
+        //        {
+        //            if (drUtilisateur["motdepasse"].ToString() == motDePasse)
+        //            {
+        //                flag = true; break;
+        //            }
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        flag = false;
+        //    }
+        //    oConnexion.Close();
+        //    return flag;
+        //}
         public List<User> GetAllUsers()
         {
             List<User> listuser = new List<User>();
