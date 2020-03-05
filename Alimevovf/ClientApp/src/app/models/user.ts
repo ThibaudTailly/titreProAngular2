@@ -6,10 +6,14 @@ export enum UserRole {
 export class User {
   id: number = 0
   pseudo: string = ""
+  password: string =""
   token: string = ""
   firstname: string = ""
   lastname: string = ""
-  email: string =""
+  Name_etablisement = ""
+  email: string = ""
+  phone: number
+
   role: UserRole = UserRole.STANDARD
 
 }

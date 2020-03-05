@@ -71,8 +71,8 @@ nav {
     max-height:3rem;
 }
 
-.banner {
-  background: url("..\..\..\assets\Accueil.jpg");
+#banner2 {
+  background-image: url("..\..\..\assets\Accueil.jpg");
   text-align: center;
   color: #fff;
   background-repeat: no-repeat;

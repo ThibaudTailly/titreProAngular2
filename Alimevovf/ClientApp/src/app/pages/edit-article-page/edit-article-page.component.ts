@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Article } from '../../models/article';
 import { ArticleService } from '../../services/article.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -12,7 +12,8 @@ import { AuthService } from '../../services/auth.service';
   providers: [DatePipe] // injectable service
 })
 export class EditArticlePageComponent implements OnInit {
-  public article: Article;
+  public article: Article
+  @ViewChild('banner', { static: false }) myId: ElementRef;
 
 
   constructor(
@@ -25,6 +26,8 @@ export class EditArticlePageComponent implements OnInit {
   }
 
   ngOnInit() {
+    document.getElementById("banner2").style.backgroundImage = "url(/assets/heron.jpg)";
+    
     /*
       this.getImage();
     
@@ -47,7 +50,7 @@ export class EditArticlePageComponent implements OnInit {
     if (!id) {
       return
     }
-    //REGARDER CAR C OBSCUR
+   
     this.articleSrv.getById(id).subscribe(
       (data: any) => {
         

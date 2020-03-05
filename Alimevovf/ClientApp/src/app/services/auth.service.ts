@@ -50,9 +50,15 @@ export class AuthService {
     return this.user.role == UserRole.ADMIN
     
   }
-  signUp()
+  signUp(user: User)
   {
-   //ToDo
+    let Nuser: any = {}
+    Nuser.Firstname = user.firstname;
+    Nuser.Name = user.lastname;
+    Nuser.Name_etablisement = user.Name_etablisement;
+    Nuser.email = user.email;
+    Nuser.phoneNumber = user.phone;
+
   }
   signIn(pseudo: string , password: string)
   {

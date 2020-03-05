@@ -1,8 +1,8 @@
 <!-- Button trigger modal -->
   <div class="text-right">
-    <!--<button type="button" (click)="ck_click()" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-    Inscription
-  </button>-->
+
+    <!-- Inscription-->
+    
     <a (click)="ck_click()" data-toggle="modal" data-target="#exampleModalLong" class="text-co text-light"> Inscription</a>
   </div>
 
@@ -20,21 +20,30 @@
         <form>
           <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            <p><input type="email" class="form-control"  id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" ></p>
             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
+            <label for="password">Password</label>
             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
           </div>
           <div class="form-group">
             <label for="Name">Name</label>
-            <input type="Name" class="form-control" id="exampleInputPassword1" placeholder="Name">
+            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Name">
           </div>
           <div class="form-group">
             <label for="firstName">firstName</label>
-            <input type="firstName" class="form-control" id="exampleInputPassword1" placeholder="firstName"/>
+            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="firstName" />
           </div>
+          <div class="form-group">
+            <label for="Prorole">Metier</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Metier" />
+          </div>
+          <div class="form-group">
+            <label for="Localisation">Localisation</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Localisation" />
+          </div>
+         
           <div>
             <p>Vous possédez déjà un compte</p><a href="#"> Cliquez-ici.</a>
           </div>

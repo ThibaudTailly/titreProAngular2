@@ -2,17 +2,24 @@
 {
     width:40rem;
 }
+.text-center {
+  font-family: Georgia, serif;
+}
 .input-group {
   justify-content: center
 }
-textarea{
-    width:40rem;
-    height:40rem;
-    margin:2rem;
+textarea {
+  width: 40rem;
+  height: 40rem;
+  margin: 2rem;
+  
 }
 .rowButton {
   justify-content: center
 }
 .btn.btn-lg {
   background-color: #f08734;
+}
+.text_date {
+  font-family: Georgia, serif;
 }
