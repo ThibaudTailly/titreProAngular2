@@ -26,8 +26,7 @@ export class EditArticlePageComponent implements OnInit {
   }
 
   ngOnInit() {
-    document.getElementById("banner2").style.backgroundImage = "url(/assets/heron.jpg)";
-    
+    document.getElementById("container").style.backgroundImage = "url(/assets/Ecriture.jpg)";
     /*
       this.getImage();
     

@@ -22,15 +22,15 @@ body {
     transition: 0.5s;
 }
 
-    .container-fluid .card .face.face1 {
-      position: relative;
-      background: #333;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1;
-      transform: translateY(100px);
-    }
+  .container-fluid .card .face.face1 {
+    position: relative;
+    background: #fdf0e6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    transform: translateY(100px);
+  }
 
   .container-fluid .card:hover .face.face1 {
     background: #f08734;

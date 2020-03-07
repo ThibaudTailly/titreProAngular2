@@ -58,17 +58,11 @@ namespace Alimevo2.Services
             List<Article> listarticle = new List<Article>();
 
             try {
-
-                // String strconn = "Data Source=localhost\\SQLEXPRESS; Initial Catalog=COOK_ALIMEVO; Integrated Security=true";
             SqlConnection conn = Database.GetConnexion();
             String req = "SELECT * FROM cook_article";
-            
-            //SqlConnection conn = new SqlConnection(strconn);
-            //SqlDataAdapter da = new SqlDataAdapter(req, strconn);
             SqlCommand cmd = new SqlCommand(req, conn);
-            //cmd.CommandType = CommandType.Text;
             conn.Open();
-            
+      
              SqlDataReader rdr = cmd.ExecuteReader();
              while (rdr.Read())
              {

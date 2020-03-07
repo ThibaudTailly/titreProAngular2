@@ -1,9 +1,10 @@
-<div class="container">
+<div class="container-fluid" id="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-lg-12 col-md-12 col-12">
       <h1 class="text-center" *ngIf="article.id<1"> Creation d'un nouvel article</h1>
-      <h1 class="text-center" *ngIf="article.id>=1"> Modification d'un nouvel article</h1>
+      <h1 class="text-center" *ngIf="article.id>=1"> Modification de l'article : {{article.id}}</h1>
     </div>
+    
   </div>
   <div class="row">
     <div class="input-group col-md-12 ">
@@ -11,9 +12,7 @@
         <h1><input type="text" class="form-control formControl" [(ngModel)]="article.title" /> </h1>
       </div>
     </div>
-    <div class="input-group col-md-2">
-      <h1>{{article.id}}</h1>
-    </div>
+   
   </div>
   <h3 class="text-center">Indiquez le lien vers l'image</h3>
   <div class="row">
@@ -52,6 +51,8 @@
   <div class="row rowButton">
     <button type="button" class="btn btn-lg" (click)="deleteArticle()">Supprimer</button>
     <button type="button" class="btn btn-lg" (click)="saveArticle()">Sauvegarder</button>
+    <a href="#"><input type="button" class="btn btn-lg " value="Accueil"/> </a>
+    
   </div>
 </div>
 

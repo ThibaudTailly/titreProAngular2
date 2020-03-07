@@ -41,11 +41,6 @@ namespace Alimevo2.Controllers
 
             )
         {
-
-            //Article article = new Article();
-            //article.Title = data["title"].ToString();
-            //article.Picture = data["picture"].ToString();
-            //article.Body = data["body"].ToString();
             darticle.DateOfCreation =  DateTime.Today;
             darticle.DateOfModification = DateTime.Today;
             //article.FK_cook_user = Convert.ToInt32(data["fkCookUser"].ToString());
