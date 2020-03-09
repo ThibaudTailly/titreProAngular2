@@ -26,7 +26,7 @@
                 </a>
               </li>
               <li *ngIf="auth.isLogged()">
-                <a class="nav-link start text-light" routerLink="article/edit">Création d'article</a>
+                <a class="nav-link start text-light" routerLink="/article/edit">Création d'article</a>
               </li>
               <li *ngIf="auth.isLogged()">
                 <a class="nav-link start text-light" routerLink="admin">Gestion Admin</a>
@@ -37,7 +37,7 @@
 
             <ul *ngIf="!auth.isLogged()" class="navbar-nav text-center ml-auto rounded">
               <li class="nav-item  ">
-                <app-modal [user]="user"></app-modal>
+                <app-modal ></app-modal>
               </li>
             </ul>
             <ul *ngIf="!auth.isLogged()" class="navbar-nav text-center p-2">

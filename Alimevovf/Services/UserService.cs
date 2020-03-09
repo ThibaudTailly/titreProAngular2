@@ -1,4 +1,5 @@
 ﻿using Alimevo2.Models;
+using Alimevovf.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -7,7 +8,7 @@ using System.Text;
 
 namespace Alimevo2.Services
 {
-    public class UserServiceClass
+    public class UserService
     {
         public static string HashPassword(string password)
         {
@@ -68,14 +69,14 @@ namespace Alimevo2.Services
                 {
                     User user = new User();
                     user.Id = Convert.ToInt32(rdr["id"]);
-                    user.Firstname = rdr["firstname"].ToString();
-                    user.Name = rdr["Name"].ToString();
-                    user.Name_etablisement = rdr["Name_establishment"].ToString();
-                    user.email = rdr["email"].ToString();
-                    user.phoneNumber = Convert.ToInt32(rdr["phonenumber"]);
-                    user.prorole = Convert.ToInt32(rdr["id_cook_prorole"]);
-                    user.location = Convert.ToInt32(rdr["id_cook_location"]);
-                    user.userrole = Convert.ToInt32(rdr["id_cook_userrole"]);
+                    user.FirstName = rdr["Firstname"].ToString();
+                    user.LastName = rdr["Name"].ToString();
+                    user.NameEtablisement = rdr["Name_establishment"].ToString();
+                    user.Email = rdr["email"].ToString();
+                    user.PhoneNumber = rdr["phonenumber"].ToString();
+                    user.ProRole = Convert.ToInt32(rdr["id_cook_prorole"]);
+                    user.Location = Convert.ToInt32(rdr["id_cook_location"]);
+                    user.UserRole = (UserRole)Convert.ToInt32(rdr["id_cook_userrole"]);
                     listuser.Add(user);
                     Console.WriteLine(user);
                 }
@@ -92,15 +93,15 @@ namespace Alimevo2.Services
             String req = "INSERT INTO cook_user VALUES (@Name,@Firstname,@Name_establishment,@email,@phoneNumber,@prorole,@location,@userrole,@password)";          
             
             SqlCommand cmd = new SqlCommand(req, conn);
-            cmd.Parameters.AddWithValue("@Name", user.Name);
-            cmd.Parameters.AddWithValue("@Firstname", user.Firstname);
-            cmd.Parameters.AddWithValue("@Name_establishment", user.Name_etablisement);
-            cmd.Parameters.AddWithValue("@email", user.email);
-            cmd.Parameters.AddWithValue("@phoneNumber", user.phoneNumber);
-            cmd.Parameters.AddWithValue("@prorole", user.prorole);
-            cmd.Parameters.AddWithValue("@location", user.location);
-            cmd.Parameters.AddWithValue("@userrole", user.userrole);
-            cmd.Parameters.AddWithValue("@password", HashPassword(user.password));
+            cmd.Parameters.AddWithValue("@Name", user.LastName);
+            cmd.Parameters.AddWithValue("@Firstname", user.FirstName);
+            cmd.Parameters.AddWithValue("@Name_establishment", user.NameEtablisement);
+            cmd.Parameters.AddWithValue("@email", user.Email);
+            cmd.Parameters.AddWithValue("@phoneNumber", user.PhoneNumber);
+            cmd.Parameters.AddWithValue("@prorole", user.ProRole);
+            cmd.Parameters.AddWithValue("@location", user.Location);
+            cmd.Parameters.AddWithValue("@userrole", (int)user.UserRole);
+            cmd.Parameters.AddWithValue("@password", HashPassword(user.Password));
 
             conn.Open();
             int i = cmd.ExecuteNonQuery();
@@ -134,7 +135,7 @@ namespace Alimevo2.Services
             
             SqlCommand cmd = new SqlCommand(req, conn);
             cmd.Parameters.AddWithValue("@id", user.Id);
-            cmd.Parameters.AddWithValue("@name", user.Name);
+            cmd.Parameters.AddWithValue("@name", user.LastName);
 
             conn.Open();
             int i = cmd.ExecuteNonQuery();

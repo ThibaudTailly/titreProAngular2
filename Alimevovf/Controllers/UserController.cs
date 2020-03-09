@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Alimevo2.Models;
 using Alimevo2.Services;
+using Alimevovf.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,13 +14,13 @@ namespace Alimevo2.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private UserServiceClass userSrv;
+        private UserService userSrv;
 
         public UserController()
         {
-            this.userSrv = new UserServiceClass();
+            this.userSrv = new UserService();
         }
-        [HttpGet]
+        [HttpGet("all")]
         public List<Models.User> ListUser()
         {
             return this.userSrv.GetAllUsers();
@@ -28,19 +29,33 @@ namespace Alimevo2.Controllers
         {
             return this.userSrv.GetAllUsers();
         }
+        [HttpPost("create")]
+        public bool Create(User user )
+        {
+ 
+            user.NameEtablisement = "BlizzardEntertainment";
+            user.PhoneNumber = "";
+            user.ProRole = 1;
+            user.Location = 1;
+            user.UserRole = UserRole.STANDARD;
+            
+            return this.userSrv.AddUser(user);
+        }
+
         [HttpGet("add")]
         public bool Add()
         {
-             User user = new User();
-             user.Name = "john";
-             user.Firstname = "doe";
-             user.Name_etablisement = "poipoi";
-             user.email = "poipoi";
-             user.phoneNumber = 06323232;
-             user.prorole = 1;
-             user.location = 1;
-             user.userrole = 1;
-             return this.userSrv.AddUser(user);
+            User user = new User();
+            user.LastName = "john";
+            user.FirstName = "doe";
+            user.NameEtablisement = "poipoi";
+            user.Email = "poipoi";
+            user.PhoneNumber = "06323232";
+            user.ProRole = 1;
+            user.Location = 1;
+            user.UserRole = UserRole.STANDARD;
+            user.Password = "azerty";
+            return this.userSrv.AddUser(user);
         }
         [HttpGet("delete")]
         public bool Delete(int id)
@@ -52,7 +67,7 @@ namespace Alimevo2.Controllers
         {
             User user = new User();
             user.Id = id;
-            user.Name = name;
+            user.LastName = name;
             return this.userSrv.UpdateUser(user);
         }
     }

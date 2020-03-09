@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Article } from '../../models/article';
 import { ArticleService } from '../../services/article.service';
 import { ActivatedRoute } from '@angular/router';
+import { User } from '../../models/user';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'ck-admin-page',
@@ -11,63 +13,66 @@ import { ActivatedRoute } from '@angular/router';
 
 export class AdminPageComponent implements OnInit {
 
-  public article: Article;
+  public users: User[];
 
   constructor(
     private actRoute: ActivatedRoute,
-    private articleSrv: ArticleService) {
+    private articleSrv: ArticleService,
+    private authSrv: AuthService) {
 
   }
 
   ngOnInit() {
     //recuperation id
     let id = this.actRoute.snapshot.paramMap.get('id');
-    this.article = new Article();
+   
     if (!id) {
       return 
     }
    //REGARDER CAR C OBSCUR
-     this.articleSrv.getById(id).subscribe(
+    this.authSrv.getAllUser().subscribe(
       (data: any) => {
         console.log(data)
-        let article: Article = new Article();
-        article.id = data["id"];
-        article.title = data["title"];
-        article.body = data["body"];
-        article.picture = data["picture"];
-        article.creationDate = new Date(data["creationDate"]);
-        article.lastModification = new Date(data["lastModification"]);
-
-        this.article = article;
+        this.users = [];
+        for (let duser of data) {
+          let user: User = new User();
+          user.id = duser["id"];
+          user.email = duser["email"];
+          user.firstname = duser["firstname"];
+          user.lastname = duser["lastname"];
+          user.phone = duser["phone"];
+          this.users.push(user);
+        }
+        console.log(this.users); 
       },
       (error: any) => { console.error(error) }
     );
 
   }
   
-  onSubmit() {
+  //onSubmit() {
 
-    if (!this.article.id) {
-      this.articleSrv.create(this.article)
-        .subscribe(
-          (data: any) => {
-            //renvoyer l'id de l'article au lieu d'un boolean
-            console.log(data)
+  //  if (!this.article.id) {
+  //    this.articleSrv.create(this.article)
+  //      .subscribe(
+  //        (data: any) => {
+  //          //renvoyer l'id de l'article au lieu d'un boolean
+  //          console.log(data)
           
 
-          },
-          (error: any) => { console.error(error) }
-        );
-    }
-    else {
-     /* this.articleSrv.update(this.article).subscribe(
-        (data: any) => {
-          //renvoyer l'id de l'article au lieu d'un boolean
-          console.log(data)
-        },
-        (error: any) => { console.error(error) }
-      );*/
-    }
+  //        },
+  //        (error: any) => { console.error(error) }
+  //      );
+  //  }
+  //  else {
+  //   /* this.articleSrv.update(this.article).subscribe(
+  //      (data: any) => {
+  //        //renvoyer l'id de l'article au lieu d'un boolean
+  //        console.log(data)
+  //      },
+  //      (error: any) => { console.error(error) }
+  //    );*/
+  //  }
    
-  }
+  //}
 }

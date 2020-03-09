@@ -59,7 +59,7 @@ namespace Alimevo2.Services
 
             try {
             SqlConnection conn = Database.GetConnexion();
-            String req = "SELECT * FROM cook_article";
+            String req = "SELECT * FROM cook_article INNER JOIN cook_user ON id_cook_user = cook_user.id";
             SqlCommand cmd = new SqlCommand(req, conn);
             conn.Open();
       

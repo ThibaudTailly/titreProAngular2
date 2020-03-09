@@ -1,6 +1,7 @@
 import { Component,ViewChild,ElementRef,AfterViewInit, OnInit, Input } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import { AuthService, User } from '../../services/auth.service';
 import { ActivatedRoute } from '@angular/router';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 
 
 @Component({
@@ -12,19 +13,31 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class ModalComponent implements OnInit{
-  @Input() user: AuthService[]
+
+
+  signupForm = new FormGroup({
+  /*pseudo: new FormControl('', [Validators.required]),*/
+    password: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
+    password2: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    firstName: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required])
+   
+  })
  
   @ViewChild("ckmodal", { static: true })
   modal: ElementRef
+
   constructor(
     private actRoute: ActivatedRoute,
-    private Auth:AuthService) { }
+    private auth:AuthService) { }
 
   ngOnInit() {
-    this.Auth = new AuthService();
+  
   }
 
   ck_click() {
+    this.signupForm.reset()
     this.modal.nativeElement.className = "modal fade show"
     this.modal.nativeElement.style = "display:block"
   }
@@ -34,8 +47,32 @@ export class ModalComponent implements OnInit{
       () => { this.modal.nativeElement.style = "display:none" },
       150)
   }
-  ck_save() {
-    this.modal.nativeElement.className = "modal fade"
-    this.modal.nativeElement.style = "display:none"
+
+  get passwordConfirmation() {
+    return this.signupForm.get('password').value == this.signupForm.get('password2').value
+  }
+
+  get formValidation() {
+    return this.signupForm.valid && this.passwordConfirmation
+  }
+
+  onSubmit() {
+    //this.modal.nativeelement.classname = "modal fade"
+    //this.modal.nativeelement.style = "display:none"
+    let user = new User()
+    user.email = this.signupForm.get('email').value
+    user.firstname = this.signupForm.get('firstName').value
+    user.lastname = this.signupForm.get('name').value
+    user.password = this.signupForm.get('password').value
+
+    this.auth.signUp(user).subscribe(
+      (data: any) => {
+        console.log(data)
+      },
+      (error: any) => {
+        console.error(error)
+      }
+
+    )
   }
 }

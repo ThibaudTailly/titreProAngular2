@@ -47,7 +47,7 @@ const routes: Routes = [
     component: EditArticlePageComponent,
     canActivate: [IsAdminGuard],
   },
-  { path: 'article/:id', component: ArticlePageComponent },
+  { path: 'article/:id/', component: ArticlePageComponent },
   {
     path: 'admin', component: AdminPageComponent,
     canActivate: [IsAdminGuard],

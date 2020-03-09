@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User, UserRole } from '../models/user';
-
+import { HttpClient } from '@angular/common/http';
 export { User, UserRole };
 
 
@@ -12,7 +12,7 @@ export class AuthService {
 
   user: User = null
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.restoreUser();
   }
 
@@ -53,11 +53,12 @@ export class AuthService {
   signUp(user: User)
   {
     let Nuser: any = {}
-    Nuser.Firstname = user.firstname;
-    Nuser.Name = user.lastname;
-    Nuser.Name_etablisement = user.Name_etablisement;
-    Nuser.email = user.email;
-    Nuser.phoneNumber = user.phone;
+    Nuser.FirstName = user.firstname;
+    Nuser.LastName = user.lastname;
+    Nuser.Email = user.email;
+    Nuser.Password = user.password;
+ 
+    return this.http.post("/api/user/create", Nuser);//créer un observable mais n'envoye pas la requete
 
   }
   signIn(pseudo: string , password: string)
@@ -76,6 +77,9 @@ export class AuthService {
       this.user = user;
     }
     console.warn('signIn',pseudo,password)
+  }
+  getAllUser() {
+    return this.http.get("/api/user/all")
   }
   logOut()
   {
