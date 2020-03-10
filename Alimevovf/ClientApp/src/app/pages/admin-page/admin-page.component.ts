@@ -17,14 +17,14 @@ export class AdminPageComponent implements OnInit {
 
   constructor(
     private actRoute: ActivatedRoute,
-    private articleSrv: ArticleService,
-    private authSrv: AuthService) {
-
+    private authSrv: AuthService
+  ) {
   }
 
-  ngOnInit() {
+  ngOnInit()
+  {
     //recuperation id
-    let id = this.actRoute.snapshot.paramMap.get('id');
+    let id = 1;
    
     if (!id) {
       return 
@@ -34,6 +34,7 @@ export class AdminPageComponent implements OnInit {
       (data: any) => {
         console.log(data)
         this.users = [];
+        debugger
         for (let duser of data) {
           let user: User = new User();
           user.id = duser["id"];
@@ -45,9 +46,10 @@ export class AdminPageComponent implements OnInit {
         }
         console.log(this.users); 
       },
-      (error: any) => { console.error(error) }
-    );
-
+      (error: any) => {
+        console.error(error)
+      });
+  
   }
   
   //onSubmit() {

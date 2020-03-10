@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-headerPresentation2',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
 })
 
 export class HeaderPresentation2Component {
-
+  @Input() users: User[]
 }

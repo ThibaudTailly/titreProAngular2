@@ -1,9 +1,12 @@
 <div class="align-self-center test " id="container-hp">
   <div class="wrapper">
-     <div class="search_box">
-       <input class="text_white" type="text" placeholder="votre recherche">
-       <a href="#"><i class="fas fa-search" ></i></a>
-     </div>
+    <div class="search_box">
+      <input class="text_white" type="text" placeholder="votre recherche">
+      <a href="#"><i class="fas fa-search"></i></a>
+      <div *ngFor="let user of users" class="col-md-4 col-sm-6">
+        <p class="h1 text-center">{{user.firstname}} test</p>
+      </div>
+    </div>
   </div>
 </div>
 

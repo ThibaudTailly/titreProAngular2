@@ -74,30 +74,6 @@ namespace Alimevo2.Controllers
         {
             return this.articleSrv.DeleteArticleById(id);
         }
-    //    [HttpPost("create")]
-    //    public bool AddArticle(
-    //        string title,
-    //        string picture,
-    //        string body,
-    //        int cookUser
-    //        )
-    //    {
-    //        var test = Request.Body;
-    //        Article article = new Article();
-    //        article.Title = Request.Form["title"];
-    //        article.Picture = picture;
-    //        article.Body = body;
-    //        article.DateOfCreation = DateTime.Today;
-    //        article.DateOfModification = DateTime.Today;
-    //        article.FK_cook_user = cookUser;
-
-            
-
-
-    //        return this.articleSrv.AddArticle(article);
-
-
-    //    }
     }
 
 }
