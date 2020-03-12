@@ -20,6 +20,7 @@ import { ServerComponent } from './server/server.component';
 import { CategorieComponent } from '../app/Component/categorie/categorie.component';
 import { BlogService } from './services/blog.service';
 import { ArticleService } from './services/article.service';
+import { FileUploadModule } from 'ng2-file-upload';
 
 
 import { RouterModule, Routes } from '@angular/router';
@@ -83,6 +84,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FileUploadModule,
     RouterModule.forRoot(routes, { enableTracing: false })
   ],
   providers: [

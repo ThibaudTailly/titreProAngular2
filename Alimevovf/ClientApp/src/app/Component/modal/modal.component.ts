@@ -13,17 +13,19 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 })
 
 export class ModalComponent implements OnInit{
-
-
+  submitted = false
+  registerForm: FormGroup;
   signupForm = new FormGroup({
   /*pseudo: new FormControl('', [Validators.required]),*/
     password: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
     password2: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
     email: new FormControl('', [Validators.required, Validators.email]),
     firstName: new FormControl('', [Validators.required]),
-    name: new FormControl('', [Validators.required])
+    name: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')])
    
   })
+
+  get f() { return this.registerForm.controls; }
  
   @ViewChild("ckmodal", { static: true })
   modal: ElementRef
@@ -59,6 +61,7 @@ export class ModalComponent implements OnInit{
   onSubmit() {
     //this.modal.nativeelement.classname = "modal fade"
     //this.modal.nativeelement.style = "display:none"
+    this.submitted = true;
     let user = new User()
     user.email = this.signupForm.get('email').value
     user.firstname = this.signupForm.get('firstName').value

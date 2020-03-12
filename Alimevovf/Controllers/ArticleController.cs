@@ -41,6 +41,9 @@ namespace Alimevo2.Controllers
 
             )
         {
+            string[] test = darticle.Picture.Split('\\');
+            darticle.Picture = "..\\..\\..\\assets\\"+ test[2];
+
             darticle.DateOfCreation =  DateTime.Today;
             darticle.DateOfModification = DateTime.Today;
             //article.FK_cook_user = Convert.ToInt32(data["fkCookUser"].ToString());

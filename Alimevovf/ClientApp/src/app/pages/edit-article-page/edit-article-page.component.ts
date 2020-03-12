@@ -4,7 +4,9 @@ import { ArticleService } from '../../services/article.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
+import { FileUploader } from 'ng2-file-upload';
 
+const uploadAPI = 'http://localhost:4000/api/upload';
 @Component({
   selector: 'ck-edit-article-page',
   templateUrl: './edit-article-page.component.html',
@@ -12,6 +14,8 @@ import { AuthService } from '../../services/auth.service';
   providers: [DatePipe] // injectable service
 })
 export class EditArticlePageComponent implements OnInit {
+  title = 'ng8fileuploadexample';
+  public uploader: FileUploader = new FileUploader({ url: uploadAPI, itemAlias: 'file' });
   public article: Article
   @ViewChild('banner', { static: false }) myId: ElementRef;
 
@@ -27,6 +31,11 @@ export class EditArticlePageComponent implements OnInit {
 
   ngOnInit() {
     document.getElementById("container").style.backgroundImage = "url(/assets/Ecriture.jpg)";
+    this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
+    this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+      console.log('FileUpload:uploaded successfully:', item, status, response);
+      alert('Article a bien été ajouté');
+    };
     /*
       this.getImage();
     
@@ -47,7 +56,7 @@ export class EditArticlePageComponent implements OnInit {
     let id = this.actRoute.snapshot.paramMap.get('id');
     this.article = new Article();
     if (!id) {
-      return
+      return  
     }
    
     this.articleSrv.getById(id).subscribe(
@@ -79,7 +88,7 @@ export class EditArticlePageComponent implements OnInit {
   }
 
   saveArticle() {
-
+   
     if (!this.article.id) {
       this.article.fkCookUser = this.authSrv.user.id;
       this.articleSrv.create(this.article)
@@ -89,7 +98,8 @@ export class EditArticlePageComponent implements OnInit {
             console.log(data)
           },
           (error: any) => { console.error(error) }
-        );
+      );
+      alert('Article a bien été ajouté');
     }
     else {
       this.articleSrv.update(this.article).subscribe(
