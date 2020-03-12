@@ -10,6 +10,7 @@ export class PageNotFoundComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    document.body.style.backgroundImage = "url(/assets/Ecriture.jpg)";
   }
 
 }

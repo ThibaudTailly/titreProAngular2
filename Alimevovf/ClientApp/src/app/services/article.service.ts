@@ -25,8 +25,7 @@ export class ArticleService {
     darticle.Title = article.title;
     darticle.Picture = article.picture;
     darticle.Body = article.body;
-    /*params.dateOfCreation = article.creationDate;
-    params.dateOfModification = article.lastModification;*/
+
     darticle.FK_cook_user = article.fkCookUser;
     console.log(darticle);
     return this.http.post("/api/article/create",  darticle );
@@ -37,8 +36,7 @@ export class ArticleService {
     darticle.Title = article.title;
     darticle.Picture = article.picture;
     darticle.Body = article.body;
-    /*params.dateOfCreation = article.creationDate;
-    params.dateOfModification = article.lastModification;*/
+
     darticle.FK_cook_user = article.fkCookUser;
     console.log(darticle);
     return this.http.post("/api/article/update", darticle);

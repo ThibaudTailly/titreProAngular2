@@ -15,13 +15,6 @@
     </div>
   </div>
   <h3 class="text-center">Indiquez le lien vers l'image</h3>
-  <!--<div class="row">
-    <div class="input-group col-md-12 ">
-      <div class="input-group-prepend">
-        <input type="text" class="form-control formControl" [(ngModel)]="article.picture" />
-      </div>
-    </div>
-  </div>-->
   <div class="container text-center">
     <input type="file" name="file" ng2FileSelect [uploader]="uploader" [(ngModel)]="article.picture" />
     
@@ -59,4 +52,5 @@
 
   </div>
 </div>
+<app-footer></app-footer>
 
