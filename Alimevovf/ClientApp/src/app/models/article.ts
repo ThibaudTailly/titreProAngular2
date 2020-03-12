@@ -1,6 +1,7 @@
 export class Article {
   id: string = ""
   title: string = "Defaulttitle"
+  abstract = ""
   picture: string = ""
   body: string = "Defaultbody"
   creationDate: Date = new Date()

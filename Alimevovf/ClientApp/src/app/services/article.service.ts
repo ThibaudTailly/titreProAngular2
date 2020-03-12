@@ -25,6 +25,7 @@ export class ArticleService {
     darticle.Title = article.title;
     darticle.Picture = article.picture;
     darticle.Body = article.body;
+    darticle.Abstract = article.abstract;
 
     darticle.FK_cook_user = article.fkCookUser;
     console.log(darticle);
@@ -36,6 +37,7 @@ export class ArticleService {
     darticle.Title = article.title;
     darticle.Picture = article.picture;
     darticle.Body = article.body;
+    darticle.Abstract = article.abstract;
 
     darticle.FK_cook_user = article.fkCookUser;
     console.log(darticle);

@@ -23,3 +23,10 @@ textarea {
 .text_date {
   font-family: Georgia, serif;
 }
+.ql-snow.ql-toolbar {
+  background: #eee !important;
+}
+.ql-container.ql-snow{
+background:white;
+}
+

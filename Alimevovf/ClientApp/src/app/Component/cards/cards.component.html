@@ -1,4 +1,4 @@
-<div class="container-fluid ">
+<!--<div class="container-fluid ">
   <div class="row">
     <div *ngFor="let article of articles" class="col-md-4 col-sm-6">
       <a routerLink="/article/{{article.id}}">
@@ -11,7 +11,7 @@
           </div>
           <div class="face face2">
             <div class="content">
-              <div [innerHTML]="article.body">
+              <div [innerHTML]="article.abstract">
 
               </div>
 
@@ -21,8 +21,24 @@
       </a>
     </div>
   </div>
-</div>
-
+</div>!-->
+  <div class="container-fluid ">
+    <div class="row">
+      <div *ngFor="let article of articles" class="col-3 border border-dark p-3 shadow-lg">
+        <a routerLink="/article/{{article.id}}">
+          <div class="row">
+            <div class="col-12">
+              <img src="{{article.picture}}" class="img-fluid" />
+            </div>
+            <div class="col-12">
+              <h2 class="text-center">{{article.title}}</h2>
+              <p class="text-center" [innerHTML]="article.abstract"></p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
 
 
 

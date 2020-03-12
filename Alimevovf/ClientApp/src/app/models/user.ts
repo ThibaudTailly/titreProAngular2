@@ -10,7 +10,7 @@ export class User {
   token: string = ""
   firstname: string = ""
   lastname: string = ""
-  Name_etablisement = ""
+  nameEstablishment = ""
   email: string = ""
   phone: number
 

@@ -32,6 +32,8 @@ export class MainPageComponent implements OnInit {
           article.picture = dArticle["picture"];
           article.creationDate = new Date(dArticle["creationDate"]);
           article.lastModification = new Date(dArticle["lastModification"]);
+          article.abstract = dArticle["abstract"];
+
           this.articles.push(article);
         }
         console.log(this.articles);

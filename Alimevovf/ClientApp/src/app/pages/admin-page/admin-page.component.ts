@@ -39,7 +39,7 @@ export class AdminPageComponent implements OnInit {
           let user: User = new User();
           user.id = duser["id"];
           user.email = duser["email"];
-          user.firstname = duser["firstname"];
+          user.firstname = duser["firstName"];
           user.lastname = duser["lastname"];
           user.phone = duser["phone"];
           this.users.push(user);

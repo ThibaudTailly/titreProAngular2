@@ -74,6 +74,7 @@ namespace Alimevo2.Services
                  article.DateOfCreation = Convert.ToDateTime(rdr["date_of_creation"]);
                  article.DateOfModification = Convert.ToDateTime(rdr["date_of_modification"]);
                  article.FK_cook_user = Convert.ToInt32(rdr["id_cook_user"]);
+                 article.Abstract = rdr["abstract"].ToString();
                  listarticle.Add(article);
              }
              }
@@ -101,6 +102,7 @@ namespace Alimevo2.Services
                 article.DateOfCreation = Convert.ToDateTime(rdr["date_of_creation"]);
                 article.DateOfModification = Convert.ToDateTime(rdr["date_of_modification"]);
                 article.FK_cook_user = Convert.ToInt32(rdr["id_cook_user"]);
+                article.Abstract = rdr["abstract"].ToString();
             }
             
             
@@ -110,7 +112,7 @@ namespace Alimevo2.Services
         public bool AddArticle(Article article)
         {
             SqlConnection conn = Database.GetConnexion();
-            String req = "INSERT INTO cook_article VALUES (@Title,@Body,@Picture,@DateOfCreation,@DateOfModification,@FK_cook_user)";
+            String req = "INSERT INTO cook_article VALUES (@Title,@Body,@Picture,@DateOfCreation,@DateOfModification,@FK_cook_user,@abstract)";
 
             SqlCommand cmd = new SqlCommand(req, conn);
             cmd.Parameters.AddWithValue("@Title", article.Title);
@@ -119,6 +121,8 @@ namespace Alimevo2.Services
             cmd.Parameters.AddWithValue("@DateOfCreation", article.DateOfCreation);
             cmd.Parameters.AddWithValue("@DateOfModification", article.DateOfModification);
             cmd.Parameters.AddWithValue("@FK_cook_user", article.FK_cook_user);
+            cmd.Parameters.AddWithValue("@abstract", article.Abstract);
+
 
             conn.Open();
             int i = cmd.ExecuteNonQuery();
@@ -148,7 +152,7 @@ namespace Alimevo2.Services
         public bool UpdateArticle(Article article)
         {
             SqlConnection conn = Database.GetConnexion();
-            string req = "UPDATE cook_article SET body = @body , title = @title, picture = @picture , date_of_modification = @dom" + 
+            string req = "UPDATE cook_article SET body = @body , title = @title, picture = @picture , date_of_modification = @dom, abstract = @abstract" + 
                 " WHERE id = @id";
 
             SqlCommand cmd = new SqlCommand(req, conn);
@@ -157,6 +161,7 @@ namespace Alimevo2.Services
             cmd.Parameters.AddWithValue("@body", article.Body);
             cmd.Parameters.AddWithValue("@title", article.Title);
             cmd.Parameters.AddWithValue("@dom", article.DateOfModification);
+            cmd.Parameters.AddWithValue("@abstract", article.Abstract);
 
             conn.Open();
             int i = cmd.ExecuteNonQuery();
@@ -177,7 +182,7 @@ namespace Alimevo2.Services
             try
             {
                 SqlConnection conn = Database.GetConnexion();
-                String req = "SELECT TOP 2 id, title, body, picture, date_of_creation, date_of_modification, id_cook_user FROM cook_article order by title";            
+                String req = "SELECT TOP 4 id, title, body, picture, date_of_creation, date_of_modification, id_cook_user,abstract FROM cook_article order by title";            
                 SqlCommand cmd = new SqlCommand(req, conn);
                 if(amount <= 0)
                 {
@@ -206,6 +211,7 @@ namespace Alimevo2.Services
                     article.DateOfCreation = Convert.ToDateTime(rdr["date_of_creation"]);
                     article.DateOfModification = Convert.ToDateTime(rdr["date_of_modification"]);
                     article.FK_cook_user = Convert.ToInt32(rdr["id_cook_user"]);
+                    article.Abstract = rdr["abstract"].ToString();
                     listarticle.Add(article);
                 }
             }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { Article } from '../../models/article';
 import { ArticleService } from '../../services/article.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -6,6 +6,8 @@ import { DatePipe } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { FileUploader } from 'ng2-file-upload';
 
+
+declare var Quill;
 const uploadAPI = 'http://localhost:4000/api/upload';
 @Component({
   selector: 'ck-edit-article-page',
@@ -13,11 +15,17 @@ const uploadAPI = 'http://localhost:4000/api/upload';
   styleUrls: ['./edit-article-page.component.css'],
   providers: [DatePipe] // injectable service
 })
-export class EditArticlePageComponent implements OnInit {
-  title = 'ng8fileuploadexample';
+export class EditArticlePageComponent implements OnInit,AfterViewInit {
+ 
   public uploader: FileUploader = new FileUploader({ url: uploadAPI, itemAlias: 'file' });
   public article: Article
+  public saved: boolean = false
   @ViewChild('banner', { static: false }) myId: ElementRef;
+  @ViewChild('quillcontainer', { static: false })
+  quillContainer: ElementRef
+
+  quillEditor: any
+
 
 
   constructor(
@@ -29,29 +37,16 @@ export class EditArticlePageComponent implements OnInit {
 
   }
 
-  ngOnInit() {
+  ngOnInit()
+  {
     document.getElementById("container").style.backgroundImage = "url(/assets/Ecriture.jpg)";
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
       console.log('FileUpload:uploaded successfully:', item, status, response);
       alert('Article a bien été ajouté');
     };
-    /*
-      this.getImage();
-    
 
-    getImage(){
-      switch (value) {
-        case 'a': {
-          this.imageName = 'Nebula.jpg';
-          break;
-        }
-        case 'b': {
-          this.imageName = 'Eclipse.jpeg';
-          break;
-        }
-      }
-    }*/
+   
     //recuperation id
     let id = this.actRoute.snapshot.paramMap.get('id');
     this.article = new Article();
@@ -62,8 +57,6 @@ export class EditArticlePageComponent implements OnInit {
     this.articleSrv.getById(id).subscribe(
       (data: any) => {
         
-        
-
         let article: Article = new Article();
         article.id = data["id"];
         article.title = data["title"];
@@ -75,11 +68,31 @@ export class EditArticlePageComponent implements OnInit {
         article.fkCookUser = data["fkCookUser"];
 
         this.article = article;
+        this.updateQuill();
         console.log(this.article)
       },
       (error: any) => { console.error(error) }
     );
 
+  }
+  ngAfterViewInit() {
+    let options = {
+      debug: 'info',
+      
+      placeholder: 'Compose an epic...',
+      readOnly: false,
+      theme: 'snow'
+    }
+    this.quillEditor = new Quill(this.quillContainer.nativeElement, options);
+    this.updateQuill();
+    console.log(this.quillEditor)
+  }
+  updateQuill() {
+    if (!this.article || !this.quillEditor) {
+      return false
+    }
+    this.quillEditor.setContents(JSON.parse(this.article.body))
+    return true
   }
 
   formatDate(date: Date) {
@@ -88,18 +101,20 @@ export class EditArticlePageComponent implements OnInit {
   }
 
   saveArticle() {
-   
+    this.article.body = JSON.stringify(this.quillEditor.getContents());
     if (!this.article.id) {
       this.article.fkCookUser = this.authSrv.user.id;
       this.articleSrv.create(this.article)
         .subscribe( //methode asynchrone
           (data: any) => {
-            //renvoyer l'id de l'article au lieu d'un boolean
+            this.saved = true;
+            setTimeout(() => { this.saved = false }, 4000)
+            
             console.log(data)
           },
           (error: any) => { console.error(error) }
       );
-      alert('Article a bien été ajouté');
+      
     }
     else {
       this.articleSrv.update(this.article).subscribe(
