@@ -15,21 +15,21 @@
           <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#"><span class="text-danger">A</span>ccueil <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" routerLink="blog">articles</a>
+                <a class="nav-link" routerLink="blog"><span class="text-danger">A</span>rticles</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                  Formules
+                  <span class="text-danger">F</span>ormules
                 </a>
               </li>
               <li *ngIf="auth.isLogged()">
-                <a class="nav-link start text-light" routerLink="/article/edit">Création d'article</a>
+                <a class="nav-link start text-light" routerLink="/article/edit"><span class="text-danger">C</span>réation d'article</a>
               </li>
               <li *ngIf="auth.isLogged()">
-                <a class="nav-link start text-light" routerLink="/admin">Gestion Admin</a>
+                <a class="nav-link start text-light" routerLink="/admin"><span class="text-danger">G</span>estion Admin</a>
               </li>
             </ul>
             <ul *ngIf="auth.isLogged()" class="navbar-nav text-center ml-auto rounded">
@@ -47,7 +47,7 @@
             </ul>
             <ul *ngIf="auth.isLogged()" class="navbar-nav text-center p-2">
               <li class="nav-item ">
-                <a class="text-co text-light start" (click)="auth.logOut()">Deconnexion</a>
+                <a class="text-co text-light start" (click)="auth.logOut()">Déconnexion</a>
               </li>
             </ul>
           </div>
@@ -60,10 +60,10 @@
   <div class="container">
     <div class="banner-text">
       <div class="wrapper">
-        <div class="row">
+        <div class="row justify-content-center">
           <div class="col-lg-10 col-md-10 col-10 input-group">
             <div class="search_box ">
-              <input class="text_white" type="text" placeholder="votre recherche">
+              <input class="text-white ml-5" type="text" placeholder="   Votre recherche">
               <div class="input-group-prepend">
                 <!--<div class="input-group-text">
   <!--<i class="fas fa-search"></i>

@@ -1,19 +1,10 @@
 <app-header></app-header>
-<div *ngIf='article' class="container">
-
+<div *ngIf='article' class="container mb-5 mt-5">
   <p class="h1 text-center">{{article.title}}&nbsp;<strong>{{article.id}}</strong></p>
-  <div #quillcontainer></div>
-  <!--<div [innerHTML]="article.body">
-
-  </div>-->
-
-
+  <div #quillcontainer class="test"></div>
   <div class=" text-center" *ngIf="isAdmin()">
     <a class="btn btn-default " routerLink="/article/edit/{{article.id}}">Modifier</a>
   </div>
-
-
-
 </div>
 <div *ngIf='!article' class="container">
   <p>Loading</p>

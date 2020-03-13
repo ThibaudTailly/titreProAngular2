@@ -16,6 +16,7 @@ code {
 body {
   background-color: #fdf0e6;
   width: 100%;
+  font-family: 'Raleway', sans-serif;
 }
 .modal-backdrop {
   /* bug fix - no overlay */

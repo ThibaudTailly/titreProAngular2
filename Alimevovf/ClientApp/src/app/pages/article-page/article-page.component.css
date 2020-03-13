@@ -1,0 +1,13 @@
+.container {
+  box-shadow: 1px 1px 20px;
+  background: white;
+  box-sizing: border-box;
+  text-align:center;
+  width:60rem;
+  margin:auto;
+  
+}
+.test{
+    text-align:center;
+}
+

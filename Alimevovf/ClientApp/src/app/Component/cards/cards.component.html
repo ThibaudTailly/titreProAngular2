@@ -21,16 +21,16 @@
       </a>
     </div>
   </div>
-</div>!-->
+</div>!
   <div class="container-fluid ">
     <div class="row">
-      <div *ngFor="let article of articles" class="col-3 border border-dark p-3 shadow-lg">
+      <div *ngFor="let article of articles" class="col-4 border border-dark p-3 shadow-lg">
         <a routerLink="/article/{{article.id}}">
           <div class="row">
             <div class="col-12">
               <img src="{{article.picture}}" class="img-fluid" />
             </div>
-            <div class="col-12">
+            <div class="col-12 p-3">
               <h2 class="text-center">{{article.title}}</h2>
               <p class="text-center" [innerHTML]="article.abstract"></p>
             </div>
@@ -38,7 +38,24 @@
         </a>
       </div>
     </div>
+  </div>-->
+<div class="container-fluid ">
+  <div class="row justify-content-center mt-2 d-flex offset-1">
+    <div class="col-lg-4 col-md-12 col-12 " *ngFor="let article of articles" >
+      <div class="artSty card mr-5 mb-5 border border-dark" style="width: 18rem;">
+        <img src="{{article.picture}}" class="card-img-top" alt="" />
+        <div class="card-body">
+          <h5 class="card-title text-center titleSty">{{article.title}}</h5>
+          <p class="card-text text-center bodySty" [innerHTML]="article.abstract"></p>
+          
+          <div class=" test text-center">
+            <a class="btn fourth" routerLink="/article/{{article.id}}">En savoir plus</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
 
 
 

@@ -55,7 +55,8 @@ namespace Alimevo2.Controllers
             )
         {
              int t = darticle.Id ;
-            
+            string[] test = darticle.Picture.Split('\\');
+            darticle.Picture = "..\\..\\..\\assets\\" + test[2];
             darticle.DateOfModification = DateTime.Today;
             
             return this.articleSrv.UpdateArticle(darticle);

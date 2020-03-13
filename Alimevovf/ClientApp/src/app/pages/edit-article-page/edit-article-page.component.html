@@ -13,20 +13,20 @@
       </div>
     </div>
   </div>
-  <h3 class="text-center">Indiquez le lien vers l'image</h3>
+  <h3 class="text-center mt-5">Indiquez le lien vers l'image</h3>
   <div class="container text-center">
     <input type="file" name="file" ng2FileSelect [uploader]="uploader" [(ngModel)]="article.picture" />
 
   </div>
-  <div class="row">
+  <div class="row  mt-5">
     <div class="input-group col-md-12 ">
       <div class="input-group-prepend ">
-        <h1><input type="text" class="form-control formControl" [(ngModel)]="article.abstract" /></h1>
+        <h1><input type="text" maxlength="100" class="form-control formControl" [(ngModel)]="article.abstract" /></h1>
       </div>
     </div>
   </div>
   <div class="container">
-    <div class="row">
+    <div class="row mt-5">
       <div class=" col-md-12 ">
         <div class="">
           <article>
