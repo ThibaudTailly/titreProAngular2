@@ -182,7 +182,7 @@ namespace Alimevo2.Services
             try
             {
                 SqlConnection conn = Database.GetConnexion();
-                String req = "SELECT TOP 4 id, title, body, picture, date_of_creation, date_of_modification, id_cook_user,abstract FROM cook_article order by title";            
+                String req = "SELECT TOP 4 id, title, body, picture, date_of_creation, date_of_modification, id_cook_user,abstract FROM cook_article order by title DESC";            
                 SqlCommand cmd = new SqlCommand(req, conn);
                 if(amount <= 0)
                 {

@@ -20,56 +20,56 @@
               <li class="nav-item">
                 <a class="nav-link" routerLink="blog"><span class="text-danger">A</span>rticles</a>
               </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                  <span class="text-danger">F</span>ormules
-                </a>
-              </li>
-              <li *ngIf="auth.isLogged()">
-                <a class="nav-link start text-light" routerLink="/article/edit"><span class="text-danger">C</span>réation d'article</a>
-              </li>
-              <li *ngIf="auth.isLogged()">
-                <a class="nav-link start text-light" routerLink="/admin"><span class="text-danger">G</span>estion Admin</a>
-              </li>
-            </ul>
-            <ul *ngIf="auth.isLogged()" class="navbar-nav text-center ml-auto rounded">
-            </ul>
+              <!--<li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    <span class="text-danger">F</span>ormules
+                  </a>
+                </li>-->
+                <li *ngIf="auth.isLogged()">
+                  <a class="nav-link start text-light" routerLink="/article/edit"><span class="text-danger">C</span>réation d'article</a>
+                </li>
+                <li *ngIf="auth.isLogged()">
+                  <a class="nav-link start text-light" routerLink="/admin"><span class="text-danger">G</span>estion Admin</a>
+                </li>
+              </ul>
+              <ul *ngIf="auth.isLogged()" class="navbar-nav text-center ml-auto rounded">
+              </ul>
 
-            <ul *ngIf="!auth.isLogged()" class="navbar-nav text-center ml-auto rounded">
-              <li class="nav-item  ">
-                <app-modal></app-modal>
-              </li>
-            </ul>
-            <ul *ngIf="!auth.isLogged()" class="navbar-nav text-center p-2">
-              <li class="nav-item ">
-                <app-modalConnexion></app-modalConnexion>
-              </li>
-            </ul>
-            <ul *ngIf="auth.isLogged()" class="navbar-nav text-center p-2">
-              <li class="nav-item ">
-                <a class="text-co text-light start" (click)="auth.logOut()">Déconnexion</a>
-              </li>
-            </ul>
-          </div>
-        </nav>
+              <ul *ngIf="!auth.isLogged()" class="navbar-nav text-center ml-auto rounded">
+                <li class="nav-item  ">
+                  <app-modal></app-modal>
+                </li>
+              </ul>
+              <ul *ngIf="!auth.isLogged()" class="navbar-nav text-center p-2">
+                <li class="nav-item ">
+                  <app-modalConnexion></app-modalConnexion>
+                </li>
+              </ul>
+              <ul *ngIf="auth.isLogged()" class="navbar-nav text-center p-2">
+                <li class="nav-item ">
+                  <a class="text-co text-light start" (click)="auth.logOut()">Déconnexion</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
       </div>
-    </div>
-    
-  </div>
-<div class="banner" id="banner2">
-  <div class="container">
-    <div class="banner-text">
-      <div class="wrapper">
-        <div class="row justify-content-center">
-          <div class="col-lg-10 col-md-10 col-10 input-group">
-            <div class="search_box ">
-              <input class="text-white ml-5" type="text" placeholder="   Votre recherche">
-              <div class="input-group-prepend">
-                <!--<div class="input-group-text">
-  <!--<i class="fas fa-search"></i>
-            </div>-->
 
-              </div>
+    </div>
+  <div class="banner" id="banner2">
+    <div class="container">
+      <div class="banner-text">
+        <div class="wrapper">
+          <div class="row justify-content-center">
+            <div class="col-lg-10 col-md-10 col-10 input-group">
+              <div class="search_box ">
+                <input class="text-white ml-5" type="text" placeholder="   Votre recherche">
+                <div class="input-group-prepend">
+                  <!--<div class="input-group-text">
+    <!--<i class="fas fa-search"></i>
+              </div>-->
+
+</div>
             </div>
           </div>
               

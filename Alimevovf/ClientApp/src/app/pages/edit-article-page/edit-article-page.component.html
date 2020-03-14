@@ -1,20 +1,26 @@
 <div class="container-fluid" id="container">
-  <div class="row">
-    <div class="col-lg-12 col-md-12 col-12">
-      <h1 class="text-center" *ngIf="article.id<1"> Creation d'un nouvel article</h1>
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-6 col-6 ">
+      <h1 class="text-center text-uppercase texttitle" *ngIf="article.id<1"> Creation d'un nouvel article</h1>
       <h1 class="text-center" *ngIf="article.id>=1"> Modification de l'article : {{article.id}}</h1>
     </div>
   </div>
-
-  <div class="row">
+  <!--<div class="row justify-content-center">
+    <div class="col-lg-6 col-md-6 col-6">
+      <div class="input-group-prepend ">
+        <h1><input type="text" class="form-control formControl mt-5" [(ngModel)]="article.title" /></h1>
+      </div>
+    </div>
+  </div>-->
+  <div class="row  mt-5">
     <div class="input-group col-md-12 ">
       <div class="input-group-prepend ">
-        <h1><input type="text" class="form-control formControl" [(ngModel)]="article.title" /></h1>
+        <h1><input type="text" maxlength="100" class="form-control formControl" [(ngModel)]="article.title" /></h1>
       </div>
     </div>
   </div>
   <h3 class="text-center mt-5">Indiquez le lien vers l'image</h3>
-  <div class="container text-center">
+  <div class="container text-center mt-5">
     <input type="file" name="file" ng2FileSelect [uploader]="uploader" [(ngModel)]="article.picture" />
 
   </div>
@@ -25,9 +31,9 @@
       </div>
     </div>
   </div>
-  <div class="container">
-    <div class="row mt-5">
-      <div class=" col-md-12 ">
+  <div class="container-fluid">
+    <div class="row mt-5 justify-content-center">
+      <div class=" col-md-6 ">
         <div class="">
           <article>
             <!--<textarea [(ngModel)]="article.body"> </textarea>-->

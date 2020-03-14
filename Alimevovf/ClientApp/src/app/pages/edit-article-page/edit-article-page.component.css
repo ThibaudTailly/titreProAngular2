@@ -2,8 +2,8 @@
 {
     width:40rem;
 }
-.text-center {
-  font-family: Georgia, serif;
+.texttitle{
+    letter-spacing:5px;
 }
 .input-group {
   justify-content: center
@@ -20,9 +20,7 @@ textarea {
 .btn.btn-lg {
   background-color: #f08734;
 }
-.text_date {
-  font-family: Georgia, serif;
-}
+
 .ql-snow.ql-toolbar {
   background: #eee !important;
 }
