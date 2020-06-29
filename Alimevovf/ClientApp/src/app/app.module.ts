@@ -9,6 +9,7 @@ import { footerComponent } from '../app/Component/footer/footer.component';
 import { mentionlegalesComponent } from '../app/Component/mentionlegales/mentionslegales.component';
 import { HeaderComponent } from '../app/Component/header/header.component';
 import { buttonAccesComponent } from '../app/Component/buttonAcces/buttonAcces.component';
+import { NavMenuComponent } from '../app/Component/nav-menu/nav-menu.component';
 
 import { partenaireComponent } from '../app/Component/partenaire/partenaire.component';
 import { HeaderPresentationComponent } from '../app/Component/headerPresentation/headerPresentation.component';
@@ -58,6 +59,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
+    NavMenuComponent,
     AppComponent,
     partenaireComponent,
     footerComponent,

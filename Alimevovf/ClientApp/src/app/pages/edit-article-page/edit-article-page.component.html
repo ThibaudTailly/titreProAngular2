@@ -1,82 +1,69 @@
 <div class="container-fluid" id="container">
-  <div class="row justify-content-center">
-    <div class="col-lg-6 col-md-6 col-6 ">
-      <h1 class="text-center text-uppercase texttitle" *ngIf="article.id<1"> Creation d'un nouvel article</h1>
-      <h1 class="text-center" *ngIf="article.id>=1"> Modification de l'article : {{article.id}}</h1>
-    </div>
-  </div>
-  <!--<div class="row justify-content-center">
-    <div class="col-lg-6 col-md-6 col-6">
-      <div class="input-group-prepend ">
-        <h1><input type="text" class="form-control formControl mt-5" [(ngModel)]="article.title" /></h1>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-md-6 col-6 ">
+        <h1 class="text-center text-uppercase texttitle" *ngIf="article.id<1"> <span class="text-danger">C</span>reation <span class="text-danger">d</span>'un <span class="text-danger">n</span>ouvel <span class="text-danger">a</span>rticle</h1>
+        <h1 class="text-center" *ngIf="article.id>=1"><span class="text-danger"> M</span>odification de l'article : {{article.id}}</h1>
       </div>
     </div>
-  </div>-->
-  <div class="row  mt-5">
-    <div class="input-group col-md-12 ">
-      <div class="input-group-prepend ">
-        <h1><input type="text" maxlength="100" class="form-control formControl" [(ngModel)]="article.title" /></h1>
-      </div>
-    </div>
-  </div>
-  <h3 class="text-center mt-5">Indiquez le lien vers l'image</h3>
-  <div class="container text-center mt-5">
-    <input type="file" name="file" ng2FileSelect [uploader]="uploader" [(ngModel)]="article.picture" />
-
-  </div>
-  <div class="row  mt-5">
-    <div class="input-group col-md-12 ">
-      <div class="input-group-prepend ">
-        <h1><input type="text" maxlength="100" class="form-control formControl" [(ngModel)]="article.abstract" /></h1>
-      </div>
-    </div>
-  </div>
-  <div class="container-fluid">
     <div class="row mt-5 justify-content-center">
-      <div class=" col-md-6 ">
-        <div class="">
-          <article>
-            <!--<textarea [(ngModel)]="article.body"> </textarea>-->
-            <div #quillcontainer></div>
-            <br />
-            <br />
-            <br />
-          </article>
-
-        </div>
-
+      <div class="col-md-12 col-lg-11 ">
+        <h1><input type="text" maxlength="100" class="form-control" [(ngModel)]="article.title" /></h1>
       </div>
     </div>
-  </div>
-
-  <div class="text-right text_date">
-    <div class="row">
-      <div class="input-group col-md-12 ">
-        <p *ngIf="article.id<1">
-          La date d'ajout de l'article sera le: {{formatDate(article.creationDate)}}
-        </p>
-        <p *ngIf="article.id>=1">
-          La date de modification de l'article sera le {{formatDate(article.lastModification)}}
-        </p>
+    <div class="row justify-content-center mt-5">
+      <h3 class=" text-center">Indiquez le lien vers l'image</h3>
+      <div class="col-lg-11 text-center mt-5">
+        <input type="file" name="file" ng2FileSelect [uploader]="uploader" [(ngModel)]="article.picture" />
       </div>
     </div>
-  </div>
-  <div class="container ">
-    <div class="row " *ngIf="saved">
-      <div class="col-md-12 text-center">
-        <div class="alert alert-success" role="alert">
-          L'article a été sauvegardé'
+    <div class="row mt-5 justify-content-center">
+      <div class="col-md-12  col-lg-11">
+          <h1><input type="text" maxlength="100" class="form-control " [(ngModel)]="article.abstract" /></h1>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row mt-5 justify-content-center">
+        <div class="col-md-12 col-lg-11 ">
+          <div class="">
+            <article>
+              <div #quillcontainer></div>
+              <br />
+              <br />
+              <br />
+            </article>
+
+          </div>
+
         </div>
       </div>
     </div>
-  </div>
-  <div class="row rowButton">
-    <button type="button" class="btn btn-lg" (click)="deleteArticle()">Supprimer</button>
-    <button type="button" class="btn btn-lg" (click)="saveArticle()">Sauvegarder</button>
-    <a href="#">
-      <input type="button" class="btn btn-lg " value="Accueil" />
-    </a>
 
+    <div class="text-right text_date">
+      <div class="row">
+        <div class="input-group col-md-12 ">
+          <p *ngIf="article.id<1">
+            La date d'ajout de l'article sera le: {{formatDate(article.creationDate)}}
+          </p>
+          <p *ngIf="article.id>=1">
+            La date de modification de l'article sera le {{formatDate(article.lastModification)}}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="container ">
+      <div class="row " *ngIf="saved">
+        <div class="col-md-12 text-center">
+          <div class="alert alert-success" role="alert">
+            L'article a été sauvegardé'
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row rowButton">
+      <button type="button" class="btn btn-lg" (click)="deleteArticle()">Supprimer</button>
+      <button type="button" class="btn btn-lg" (click)="saveArticle()">Sauvegarder</button>
+    </div>
   </div>
 </div>
 <app-footer></app-footer>

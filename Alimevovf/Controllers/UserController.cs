@@ -20,15 +20,22 @@ namespace Alimevo2.Controllers
         {
             this.userSrv = new UserService();
         }
+        [HttpPost("auth")]
+        public User ControllerAuth(UserLogs userlogs)
+        {
+            if(this.userSrv.Authentifier(userlogs.Mail, userlogs.Password))
+            {
+                return this.userSrv.GetUserByEmail(userlogs.Mail);
+            }
+            return null;
+           
+        }
         [HttpGet("all")]
         public List<Models.User> ListUser()
         {
             return this.userSrv.GetAllUsers();
         }
-        public List<Models.User> Get()
-        {
-            return this.userSrv.GetAllUsers();
-        }
+        
         [HttpPost("create")]
         public bool Create(User user )
         {
@@ -57,17 +64,23 @@ namespace Alimevo2.Controllers
             user.Password = "azerty";
             return this.userSrv.AddUser(user);
         }
-        [HttpGet("delete")]
+        [HttpDelete("{id}")]
         public bool Delete(int id)
         {
             return this.userSrv.DeleteUser(id);
         }
-        [HttpGet("updateName")]
+        [HttpPost("updateName")]
         public bool UpdateName(int id, string name)
         {
             User user = new User();
             user.Id = id;
             user.LastName = name;
+            
+            return this.userSrv.UpdateUser(user);
+        }
+        [HttpPost("update")]
+        public bool Update(User user)
+        {
             return this.userSrv.UpdateUser(user);
         }
     }

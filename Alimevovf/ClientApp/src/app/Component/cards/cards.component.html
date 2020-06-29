@@ -40,14 +40,14 @@
     </div>
   </div>-->
 <div class="container-fluid ">
-  <div class="row justify-content-center mt-2 d-flex offset-1">
+  <div class="row justify-content-center mt-5 d-flex offset-1">
     <div class="col-lg-4 col-md-12 col-12 " *ngFor="let article of articles" >
       <div class="artSty card mr-5 mb-5 border border-dark" style="width: 18rem;">
         <img src="{{article.picture}}" class="card-img-top" alt="" />
         <div class="card-body">
           <h5 class="card-title text-center titleSty">{{article.title}}</h5>
           <p class="card-text text-center bodySty" [innerHTML]="article.abstract"></p>
-          
+
           <div class=" test text-center">
             <a class="btn fourth" routerLink="/article/{{article.id}}">En savoir plus</a>
           </div>

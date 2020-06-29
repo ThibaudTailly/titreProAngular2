@@ -33,18 +33,20 @@ namespace Alimevo2.Services
 
             SqlConnection conn = Database.GetConnexion();
             // Définition de la requête à exécuter
-            SqlCommand oCommand = new SqlCommand("SELECT * FROM Utilisateurs WHERE email='" + mail + "'", conn);
+            SqlCommand oCommand = new SqlCommand("SELECT * FROM cook_user WHERE email='" + mail + "'", conn);
             try
             {
                 // Ouverture de la connexion et exécution de la requête
+                oCommand.Parameters.AddWithValue("@email", mail);
                 conn.Open();
                 SqlDataReader drUtilisateur = oCommand.ExecuteReader();
                 // Parcours de la liste des utilisateurs
                 while (drUtilisateur.Read())
                 {
-                    if (drUtilisateur["motdepasse"].ToString() == hashed)
+                    if (drUtilisateur["password"].ToString() == hashed)
                     {
-                        flag = true; break;
+                        flag = true; 
+                        break;
                     }
                 }
             }
@@ -55,17 +57,33 @@ namespace Alimevo2.Services
             conn.Close();
             return flag;
         }
-        /*public static string RecursiveHtmlDecode(string str)
+
+        public User GetUserByEmail(string email)
         {
-            if (string.IsNullOrWhiteSpace(str)) return str;
-            var tmp = HttpUtility.HtmlDecode(str);
-            while (tmp != str)
+            User user = null;
+            SqlConnection conn = Database.GetConnexion();
+            string req = "SELECT * FROM cook_user WHERE email = @email";
+            SqlCommand cmd = new SqlCommand(req, conn);
+            cmd.Parameters.AddWithValue("@email", email);
+            conn.Open();
+            SqlDataReader rdr = cmd.ExecuteReader();
+            while (rdr.Read())
             {
-                str = tmp;
-                tmp = HttpUtility.HtmlDecode(str);
+                user = new User();
+                user.Id = Convert.ToInt32(rdr["id"]);
+                user.FirstName = rdr["Firstname"].ToString();
+                user.LastName = rdr["Name"].ToString();
+                user.NameEtablisement = rdr["Name_establishment"].ToString();
+                user.Email = rdr["email"].ToString();
+                user.PhoneNumber = rdr["phonenumber"].ToString();
+                user.ProRole = Convert.ToInt32(rdr["id_cook_prorole"]);
+                user.Location = Convert.ToInt32(rdr["id_cook_location"]);
+                user.UserRole = (UserRole)Convert.ToInt32(rdr["id_cook_userrole"]);
             }
-            return str; //completely decoded string
-        }*/
+            conn.Close();
+            return user;
+        }
+       
         public List<User> GetAllUsers()
         {
             List<User> listuser = new List<User>();
@@ -142,11 +160,12 @@ namespace Alimevo2.Services
         public bool UpdateUser(User user)
         {
             SqlConnection conn = Database.GetConnexion();
-            string req = "UPDATE cook_user SET name = @name WHERE id = @id";
+            string req = "UPDATE cook_user SET name = @name , phonenumber =@phonenumber WHERE id = @id";
             
             SqlCommand cmd = new SqlCommand(req, conn);
             cmd.Parameters.AddWithValue("@id", user.Id);
             cmd.Parameters.AddWithValue("@name", user.LastName);
+            cmd.Parameters.AddWithValue("@phonenumber", user.PhoneNumber);
 
             conn.Open();
             int i = cmd.ExecuteNonQuery();

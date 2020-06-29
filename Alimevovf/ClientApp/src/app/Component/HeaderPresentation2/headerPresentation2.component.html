@@ -1,12 +1,81 @@
-<div class="align-self-center test " id="container-hp">
-  <div class="wrapper">
-    <div class="search_box">
-      <input class="text_white" type="text" placeholder="votre recherche">
-      <a href="#"><i class="fas fa-search"></i></a>
-      <div *ngFor="let user of users" class="col-md-4 col-sm-6">
-        <p class="h1 text-center">{{user.firstname}} test</p>
+<div class="container-fluid">
+  <div class="container">
+    <div class="row shadow-sm">
+      <div class="col-lg-12 col-12 col-md-12 mt-5   table-responsive">
+        <div class="tableSty">
+          <!-- Création d'une balise form permettant d'envoyer les données des inputs avec la méthode POST -->
+          <table class="table table-light   table-striped table-bordered table-hover ">
+            <thead class="thead-secondary ">
+              <tr class="text-center bg-secondary">
+                <th scope="col" class="font-weight-bolder h5">Prénom</th>
+                <th scope="col" class="font-weight-bolder h5">Nom</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="text-center" *ngFor="let user of users">
+                <td class="align-middle">
+                  {{user.firstname}}
+                </td>
+                <td class="align-middle">
+                  {{user.lastname}}
+                </td>
+                <td class="align-middle">
+                  <i class="pointer fas fa-search bg-transparent" data-toggle="modal" [attr.data-target]="'#ModalVue-' + user.id"></i>
+                  <!-- Modal -->
+                  <div class="modal fade" id="{{'ModalVue-' + user.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog bg-transparent" role="document">
+                      <div class="modal-content border border-light">
+                        <div class="col-lg-8 text-center mx-auto mt-3">
+                          <div class="shadow-lg p-1 mb-2 bg-white hoverZoom">{{user.firstname}}  {{user.lastname}}</div>
+                          <div class="shadow-lg p-1 mb-2 bg-white hoverZoom">
+                            {{user.email}}
+                          </div>
+                          <div class="shadow-lg p-1 mb-3 bg-white hoverZoom">{{user.phone}}</div>
+                        </div>
+                        <div class="modal-footer justify-content-center">
+                          <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-success">Save changes</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                </td>
+                <td class="align-middle">
+                  <i class="fas fa-pen pointer bg-transparent" data-toggle="modal" [attr.data-target]="'#ModalModify-' + user.id"></i>
+                  <!-- Modal -->
+                  <div class="modal fade centered-modal" id="{{'ModalModify-' + user.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel " aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class=" mx-auto p-3" style="width: 18rem;">
+                          <div class="">
+                            <h5 class="card-title">{{user.id}} {{user.firstname}}  {{user.lastname}}</h5>
+                            <label>email</label>
+                            <input class="card-text form-control" [(ngModel)]="user.email" />
+                            <label>telephone</label>
+                            <input class="card-text form-control" [(ngModel)]="user.phone" />
+
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="close" data-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary" (click)="updateUser(user)">Save changes</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td class="align-middle">
+                  <a><i class="fas fa-trash pointer"></i></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
 </div>
-

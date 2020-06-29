@@ -2,6 +2,7 @@ import { Component,ViewChild,ElementRef,AfterViewInit, OnInit, Input } from '@an
 import { AuthService, User } from '../../services/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { PasswordValidator } from '../../models/PasswordValidator';
 
 
 @Component({
@@ -17,15 +18,17 @@ export class ModalComponent implements OnInit{
   registerForm: FormGroup;
   signupForm = new FormGroup({
   /*pseudo: new FormControl('', [Validators.required]),*/
-    password: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
-    password2: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
+    password: new FormControl('', [Validators.required, PasswordValidator.getFormValidator()]),
+    password2: new FormControl('', [Validators.required, PasswordValidator.getFormValidator()]),
     email: new FormControl('', [Validators.required, Validators.email]),
     firstName: new FormControl('', [Validators.required]),
     name: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')])
+
    
   })
 
-  get f() { return this.registerForm.controls; }
+
+
  
   @ViewChild("ckmodal", { static: true })
   modal: ElementRef
@@ -57,7 +60,9 @@ export class ModalComponent implements OnInit{
   get formValidation() {
     return this.signupForm.valid && this.passwordConfirmation
   }
-
+  get mailValidation() {
+    return this.signupForm.get('email').valid;
+  }
   onSubmit() {
     //this.modal.nativeelement.classname = "modal fade"
     //this.modal.nativeelement.style = "display:none"

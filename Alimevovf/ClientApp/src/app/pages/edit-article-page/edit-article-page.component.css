@@ -20,6 +20,10 @@ textarea {
 .btn.btn-lg {
   background-color: #f08734;
 }
+.container {
+  background-color:bisque;
+  box-shadow: 1px 1px 20px;
+}
 
 .ql-snow.ql-toolbar {
   background: #eee !important;

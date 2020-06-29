@@ -48,7 +48,18 @@ export class ModalConnexionComponent implements AfterViewInit{
     this.authSrv.signIn(
       this.connectionForm.get('pseudo').value,
       this.connectionForm.get('password').value
+      
+    ).subscribe(
+      (data: any) =>
+      {
+        console.warn(data);
+        this.authSrv.handleUserAuth(data);
+      },
+      (error: any) => {
+        console.error(error)
+      }
     )
+    
     this.ck_close();
   }
 }

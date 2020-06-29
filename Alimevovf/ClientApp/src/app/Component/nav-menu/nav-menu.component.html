@@ -1,103 +1,32 @@
-<header>
-  <!--<nav
-    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
-  >
-    <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">Alimevovf</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target=".navbar-collapse"
-        aria-label="Toggle navigation"
-        [attr.aria-expanded]="isExpanded"
-        (click)="toggle()"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div
-        class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
-        [ngClass]="{ show: isExpanded }"
-      >
-        <ul class="navbar-nav flex-grow">
-          <li
-            class="nav-item"
-            [routerLinkActive]="['link-active']"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
-            <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/counter']"
-              >Counter</a
-            >
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/fetch-data']"
-              >Fetch data</a
-            >
-          </li>
-
-        </ul>
-      </div>
-    </div>
-  </nav>-->
-  <section class="header">
-    <div class="overlay">
-      <div class="row">
-        <div class="navbar navbar-default">
-          <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <div class="navlogo col-lg-2">
-                <a class="navbar-brand" href="#">Name</a>
-              </div>
-
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <div class="col-lg-8">
-                <ul class="nav navbar-nav nav-links">
-                  <li><a href="#">Demos</a></li>
-                  <li><a href="#">Featured</a></li>
-                  <li><a href="#">Pages</a></li>
-                  <li><a href="#">Elements</a></li>
-                  <li><a href="#">Portfolio</a></li>
-                  <li><a href="#">Blog</a></li>
-                  <li><a href="#">Shop</a></li>
-
-                </ul>
-              </div>
-
-              <div class="col-lg-2 right">
-                <ul class="nav navbar-nav navbar-right">
-                  <li><a href="#"><i class="fa fa-search fa-2x"></i></a></li>
-                  <li><a href="#"><i class="fa fa-shopping-cart fa-2x"></i></a></li>
-
-                </ul>
-              </div>
-
-            </div>
-
-
-          </div>
-        </div>
-
-
-      </div>
-
-
-
-
-
-    </div>
-  </section>
-</header>
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top" id="colorBgNavbar">
+  <a class="navbar-brand title" href="#">AlimEvo</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item ">
+        <a class="nav-link" href="#"><span class="text-danger">A</span>ccueil <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown ">
+        <a class="nav-link" routerLink="blog"><span class="text-danger">A</span>rticles</a>
+      </li>
+      <li *ngIf="auth.isLogged()">
+        <a class="nav-link start text-light" routerLink="/article/edit"><span class="text-danger">C</span>réation d'article</a>
+      </li>
+      <li *ngIf="auth.isLogged()">
+        <a class="nav-link start text-light" routerLink="/admin"><span class="text-danger">G</span>estion Admin</a>
+      </li>
+      
+      <li *ngIf="!auth.isLogged()" class="nav-item text-center ml-auto rounded">
+        <app-modal></app-modal>
+      </li>
+      <li *ngIf="!auth.isLogged()" class="nav-item text-center ml-auto rounded">
+        <app-modalConnexion></app-modalConnexion>
+      </li>
+      <li *ngIf="auth.isLogged()" class="nav-link text-center ml-auto rounded">
+        <a class="text-co text-light start" (click)="auth.logOut()">Déconnexion</a>
+      </li>
+    </ul>
+  </div>
+</nav>

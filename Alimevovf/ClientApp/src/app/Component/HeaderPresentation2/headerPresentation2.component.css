@@ -5,62 +5,107 @@ p {
   background-image: none;
  
 }
-
-@media screen and (max-width: 1280px)
-{
-    /* Rédigez vos propriétés CSS ici */
+.tableSty {
+  box-shadow: 1px 1px 10px black;
 }
-  #container-hp {
-    background-image: url("..\..\..\assets\banniere.jpg");
-    background-repeat: no-repeat;
+
+.modal-dialog .modal-content {
+  top: 45vh !important;
+  transform: translateY(-50%) !important;
+}
+@media screen and (max-width: 1280px) {
+  /* Rédigez vos propriétés CSS ici */
+}
+.pointer{
+    cursor:pointer;
+}
+.hoverZoom:hover {
+  transform: translateY(-3px);
+  transition: 1s ease-out;
+}
+#container-hp {
+  background-image: url("..\..\..\assets\banniere.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 35rem;
+  background-position-y: -10rem;
+  background-position-x: center;
+  background-attachment: fixed;
+}
+
+  button {
+    color: var(--color);
+    -webkit-transition: 0.25s;
+    transition: 0.25s;
+  }
+
+    button:hover, button:focus {
+      border-color: var(--hover);
+      color: #fff;
+    }
+
+  .slide {
+    --color: #8fc866;
+    --hover: #66c887;
+  }
+
+    .slide:hover,
+    .slide:focus {
+      box-shadow: inset 6.5em 0 0 0 var(--hover);
+    }
+
+  .test {
+    text-align: center;
+    align-content: center;
+  }
+
+  .wrapper {
+    width: 100%;
+    height: 10vh;
     background-size: cover;
-    height: 35rem;
-    background-position-y: -10rem;
-    background-position-x:center;
-    background-attachment: fixed;
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+.close {
+  --color: #ff7f82;
+  --hover: #ffdc7f;
+}
+.close:hover,
+.close:focus {
+  box-shadow: inset -3.5em 0 0 0 var(--hover), inset 3.5em 0 0 0 var(--hover);
+}
+
+button {
+  background: none;
+  border: 2px solid;
+  font: inherit;
+  line-height: 1;
+  margin: 0.5em;
+  padding: 1em 2em;
+}
+button {
+  color: var(--color);
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+}
+
+  button:hover, button:focus {
+    border-color: var(--hover);
+    color: #fff;
   }
 
 
-.test {
-  text-align: center;
-  align-content: center;
-}
-
-.wrapper {
-  width: 100%;
-  height: 10vh;
+.container-fluid {
+  height: 94.1vh;
+  background-image: url("..\..\..\assets\salad.jpg");
+  background-attachment: fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
   background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-.search_box {
-  width: 50%;
-  position: relative;
-}
-
-.search_box input[type="text"] {
-    width: 100%;
-    padding: 20px;
-    padding-right: 60px;
-    box-sizing: border-box;
-    background: rgba(0,0,0,0.3);
-    border: 2px solid #fff;
-    border-radius: 10px;
-    margin-top:20rem;
-    outline: none;
-}
-.fa-search {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 25px;
-  color: #fff;
-  font-size: 25px;
-  margin-top:10rem;
-}
+  
 
 
 

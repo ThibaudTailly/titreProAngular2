@@ -25,6 +25,7 @@ export class AdminPageComponent implements OnInit {
   {
     //recuperation id
     let id = 1;
+    
    
     if (!id) {
       return 
@@ -34,14 +35,14 @@ export class AdminPageComponent implements OnInit {
       (data: any) => {
         console.log(data)
         this.users = [];
-        debugger
         for (let duser of data) {
+
           let user: User = new User();
           user.id = duser["id"];
           user.email = duser["email"];
           user.firstname = duser["firstName"];
-          user.lastname = duser["lastname"];
-          user.phone = duser["phone"];
+          user.lastname = duser["lastName"];
+          user.phone = duser["phoneNumber"];
           this.users.push(user);
         }
         console.log(this.users); 
@@ -49,8 +50,20 @@ export class AdminPageComponent implements OnInit {
       (error: any) => {
         console.error(error)
       });
+
+    
+    /*if()
+    this.authSrv.updateUser(this.user).subscribe((data: any) => {
+      //renvoyer l'id de l'article au lieu d'un boolean
+      console.log(data)
+    },
+      (error: any) => { console.error(error) }
+    );*/
+   
   
   }
+
+ 
   
   //onSubmit() {
 

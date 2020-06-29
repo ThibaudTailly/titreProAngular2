@@ -16,7 +16,7 @@ export class AuthService {
     this.restoreUser();
   }
 
-  restoreUser() {
+  restoreUser()  {
     let userstr = localStorage.getItem("user");
     console.log(userstr, JSON.parse(userstr));
     let user = new User();
@@ -40,6 +40,7 @@ export class AuthService {
 
   isLogged():boolean
   {
+   
 
     return !!this.user
   }
@@ -63,23 +64,48 @@ export class AuthService {
   }
   signIn(pseudo: string , password: string)
   {
+    let dUserLogs: any = {}
+    dUserLogs.Mail = pseudo;
+    dUserLogs.Password = password;
     //ToDo
-    if (pseudo == "admin" && password == "admin")
-    {
-      let user = new User();
-      user.id = 1
-      user.pseudo = "pseudo";
-      user.firstname = "poipoi";
-      user.lastname = "poipoi";
-      user.email = "thibaud@gmail.com";
-      user.role = UserRole.ADMIN;
+
+    return this.http.post("api/user/auth", dUserLogs)
+  }
+
+  handleUserAuth(user: User | any) {
+    console.log(user)
+    if (!(user instanceof User)) {
+      let nUser: User = new User();
+      nUser.id = user.id;
+      nUser.firstname = user.firstName;
+      nUser.lastname = user.lastName;
+      nUser.email = user.email;
+      nUser.phone = user.phoneNumber;
+      nUser.role = user.userRole;
+      user = nUser;
+    }
       this.storeUser(user)
       this.user = user;
-    }
-    console.warn('signIn',pseudo,password)
+    
   }
   getAllUser() {
     return this.http.get("/api/user/all")
+  }
+
+  updateUser(user: User) {
+    let dUser: any = {}
+    dUser.Id = user.id;
+    dUser.firstName = user.firstname;
+    dUser.lastName = user.lastname;
+    dUser.email = user.email;
+    dUser.phoneNumber = user.phone;
+    dUser.role = user.role;
+    return this.http.post("api/user/update",dUser);
+  }
+
+  deleteUserById(id:number) {
+
+    return this.http.delete("api/user/" + id);
   }
   logOut()
   {
